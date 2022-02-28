@@ -2,7 +2,7 @@ import {Form, Input, Button, Col, Typography, Modal} from 'antd';
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {actions as userActions} from '../ducks/user'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import '../css/form.css'
 
 const {Title} = Typography;
@@ -114,8 +114,8 @@ const LoginForm = ({login,register}) => {
                 backgroundColor: 'rgba(35,31,31,0.55)',
             }}
         >
-            <Col offset={8} style={{marginBottom: '5vh'}}>
-                <Title style={{color: 'white'}}>图像取证系统</Title>
+            <Col offset={5} style={{marginBottom: '5vh'}}>
+                <Title style={{color: 'white'}}>支持隐私保护的检测系统</Title>
             </Col>
             <Form.Item
                 label="用户名"
