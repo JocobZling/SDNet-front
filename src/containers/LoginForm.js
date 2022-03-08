@@ -51,7 +51,7 @@ const CollectionCreateForm = ({visible, onCreate, onCancel}) => {
                 className='register'
             >
                 <Form.Item
-                    name="username"
+                    name="name"
                     label="用户名"
                     rules={[{required: true, message: '请输入用户名'}]}
                 >
@@ -118,9 +118,9 @@ const LoginForm = ({login,register}) => {
                 <Title style={{color: 'white'}}>支持隐私保护的检测系统</Title>
             </Col>
             <Form.Item
-                label="用户名"
-                name="username"
-                rules={[{required: true, message: '请输入用户名'}]}
+                label="用户邮箱"
+                name="email"
+                rules={[{required: true, message: '请输入用户邮箱'}]}
                 style={style}
             >
                 <Input/>

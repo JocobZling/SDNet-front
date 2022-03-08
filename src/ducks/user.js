@@ -19,7 +19,7 @@ export const actions = {
         return dispatch => {
             (async () => {
                 dispatch(appActions.startFetch());
-                const res = await request.postWithBody('http://127.0.0.1:8080/api/users/login', data);
+                const res = await request.postWithBody('./api/users/login', data);
                 if (res.status === HTTP_CODE.OK) {
                     window.localStorage.setItem("jwt", res.body.data.jwtToken);
                     window.localStorage.setItem("id", res.body.data.id);
@@ -36,9 +36,13 @@ export const actions = {
             (async () => {
                 dispatch(appActions.startFetch());
                 debugger;
-                const res = await request.postWithBody('http://127.0.0.1:8080/api/users/register', data);
+                const res = await request.postWithBody('./api/users/register', data);
                 if (res.status === HTTP_CODE.OK) {
-                    message.success("注册成功！");
+                    message.success("您已注册成功，请登录！");
+                    dispatch(appActions.finishFetch());
+                }else{
+                    message.warn("此邮箱已注册，请登录！");
+                    // message.error("此邮箱已注册，请登录！");
                     dispatch(appActions.finishFetch());
                 }
             })();
