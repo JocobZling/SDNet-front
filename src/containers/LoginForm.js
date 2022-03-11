@@ -21,6 +21,7 @@ const style = {
     color: 'white'
 };
 
+// 注册模块
 const CollectionCreateForm = ({visible, onCreate, onCancel}) => {
     const [form] = Form.useForm();
     return (
@@ -88,6 +89,7 @@ const CollectionCreateForm = ({visible, onCreate, onCancel}) => {
 const LoginForm = ({login,register}) => {
     const [visible, setVisible] = useState(false);
 
+    // 注册函数
     const onCreate = (values) => {
         console.log('Received values of form: ', values);
         register(values)

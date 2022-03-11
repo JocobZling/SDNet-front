@@ -5,8 +5,9 @@ import {HashRouter, Route} from 'react-router-dom';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import {app, user,} from './ducks/index'
-import {LoginContainer} from './containers/index';
 import HomeContainer from "./containers/App";
+import MyLoginContainer from "./containers/MyLoginContainer";
+import RegisterContainer from "./containers/RegisterContainer";
 
 const reducer = combineReducers({
     app,
@@ -15,6 +16,7 @@ const reducer = combineReducers({
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));
 
+// 程序运行主入口
 ReactDOM.render(
     <Provider store={store}>
         <HashRouter>
@@ -22,7 +24,8 @@ ReactDOM.render(
             <Route
                 path={['/index', '/profile', '/password']}
                 component={HomeContainer}/>
-            <Route path='/login' exact component={LoginContainer}/>
+            <Route path='/login' exact component={MyLoginContainer}/>
+            <Route path='/register' exact component={RegisterContainer}/>
         </HashRouter>
     </Provider>,
     document.getElementById('root')

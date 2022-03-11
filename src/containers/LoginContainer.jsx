@@ -4,8 +4,6 @@ import img from '../images/login.jpg'
 import styled from 'styled-components'
 import LoginForm from "./LoginForm";
 
-const {Content, Sider} = Layout;
-
 const LoginPage = styled('div')`
     height:100vh;
     background: url(${img});

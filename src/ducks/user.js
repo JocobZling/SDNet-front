@@ -21,9 +21,9 @@ export const actions = {
                 dispatch(appActions.startFetch());
                 const res = await request.postWithBody('./api/users/login', data);
                 if (res.status === HTTP_CODE.OK) {
-                    window.localStorage.setItem("jwt", res.body.data.jwtToken);
-                    window.localStorage.setItem("id", res.body.data.id);
-                    window.localStorage.setItem("userName", res.body.data.username);
+                    debugger;
+                    window.localStorage.setItem("jwt", res.token);
+                    window.localStorage.setItem("user", res.user);
                     message.success("登录成功！");
                     window.location.href = '/';
                     dispatch(appActions.finishFetch());
@@ -39,10 +39,11 @@ export const actions = {
                 const res = await request.postWithBody('./api/users/register', data);
                 if (res.status === HTTP_CODE.OK) {
                     message.success("您已注册成功，请登录！");
+                    window.location.href = "http://localhost:3000/#/login"
                     dispatch(appActions.finishFetch());
                 }else{
                     message.warn("此邮箱已注册，请登录！");
-                    // message.error("此邮箱已注册，请登录！");
+                    window.location.href = "http://localhost:3000/#/login"
                     dispatch(appActions.finishFetch());
                 }
             })();

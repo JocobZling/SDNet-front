@@ -105,6 +105,7 @@ export const postWithBody = async (url, data) => {
         }
         const {status} = res;
         const body = await res.json();
+        // assign分配 将source的内容加入file
         return Object.assign({file: {status: 'done'}}, {body}, {status})
     } catch (ex) {
         return {status: ex.status}
