@@ -1,0 +1,22 @@
+.container{
+    padding-top:10px;
+    text-align: center;
+    margin: 10px auto 0;
+    font-family: 思源黑体;
+
+}
+Modify-information {
+    width: 300px;
+    margin: 100px auto 0;
+
+
+}
+.ant-form.button{
+    width: 100%;
+}
+h1 {
+    color: gray;
+     font-family: "华光中圆_CNKI";
+     font-size: 20px;
+     font-weight: bolder;
+ }

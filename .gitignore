@@ -1,0 +1,7 @@
+node_modules
+build
+package-lock.json
+.history
+.idea/
+debug.log
+node_modules/
