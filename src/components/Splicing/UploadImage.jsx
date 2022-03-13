@@ -1,9 +1,8 @@
 import {Upload, Button, Image, Col, Row, Tooltip, Divider} from 'antd';
-import {UploadOutlined, BellOutlined} from '@ant-design/icons';
+import {UploadOutlined} from '@ant-design/icons';
 import React, {useState} from "react";
 import Tips from '../../images/tips.png'
 import styled from "styled-components";
-import * as utils from '../../utils/fetch-request'
 import Detection from "./Detection";
 
 //const action = '/api/photo/upload/' + utils.getHeaderFromLocalStorage('id')
@@ -90,10 +89,8 @@ const UploadImage = ({uploadAndSplitImage, images}) => {
                     />
                 </Col>
             </Row>
-            <Row>
-                <Divider orientation="left">支持隐私保护的拼接检测</Divider>
-                <Detection pictureOnePosition={pictureOnePosition} pictureTwoPosition={pictureTwoPosition}/>
-            </Row>
+            <Divider orientation="left">支持隐私保护的拼接检测</Divider>
+            <Detection pictureOnePosition={pictureOnePosition} pictureTwoPosition={pictureTwoPosition}/>
         </div>
 
     )

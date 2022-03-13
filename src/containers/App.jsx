@@ -6,6 +6,8 @@ import UserPasswordContainer from "./UserPassword";
 import UserProfileContainer from "./UserProfile";
 import MyLoginContainer from "./MyLoginContainer";
 import SplicingDetectionContainer from "./SplicingDetectionContainer";
+import EncryptedImagAnalysisContainer from "./EncryptedImagAnalysisContainer";
+
 
 const HomeContainer = () => {
     // if (!window.localStorage.getItem('jwt')) {
@@ -22,6 +24,7 @@ const HomeContainer = () => {
                 <Route path='/login' exact component={MyLoginContainer}/>
                 {/*<Route path='*' exact component={WelcomeContainer}/>*/}
                 <Route path='/splicingDetection' exact component={SplicingDetectionContainer}/>
+                <Route path='/encryptedImagAnalysis' exact component={EncryptedImagAnalysisContainer}/>
             </Switch>
         </HomePage>)
 }

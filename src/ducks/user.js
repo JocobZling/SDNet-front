@@ -21,7 +21,6 @@ export const actions = {
                 dispatch(appActions.startFetch());
                 const res = await request.postWithBody('./api/users/login', data);
                 if (res.status === HTTP_CODE.OK) {
-                    debugger;
                     window.localStorage.setItem("jwt", res.body.token);
                     window.localStorage.setItem("user", res.body.user);
                     message.success("登录成功！");
