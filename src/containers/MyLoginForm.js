@@ -5,6 +5,8 @@ import '../css/myform.css'
 import {actions as userActions} from "../ducks/user";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import cookie from "react-cookies";
+import * as encrypt from '../utils/base64'
 
 const layout = {
     wrapperCol: {span:30},
@@ -13,18 +15,22 @@ const layout = {
 const NormalLoginForm = ({login}) => {
     const onFinish = (values) => {
         if(values.remember){
-            localStorage.setItem("email", values.email);
-            localStorage.setItem("password", values.password);
+            var password = encrypt.base64encode(values.password);
+            var email = encrypt.base64encode(values.email);
+            let inFifteenMinutes = new Date(new Date().getTime() + 24 * 3600 * 1000);//一天
+            cookie.save('password', password, { expires: inFifteenMinutes });
+            cookie.save('email', email, { expires: inFifteenMinutes });
+
         }else{
-            localStorage.removeItem("email");
-            localStorage.removeItem("password");
+            cookie.remove('password');
+            cookie.remove('email');
         }
         console.log('Received values of form: ', values);
         login(values)
     };
 
-    const email = localStorage.getItem("email");
-    const password = localStorage.getItem("password");
+    const email = encrypt.base64decode(cookie.load("email"));
+    const password = encrypt.base64decode(cookie.load("password"));
 
     return (
         <Form

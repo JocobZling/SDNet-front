@@ -4,14 +4,6 @@ import NormalLoginForm from "./MyLoginForm";
 import Header from "../constant/Header";
 import {Col, Row} from "antd";
 
-const LoginPage = styled('div')`
-    height:100vh;
-`
-
-const BodyContainer = styled('div')`
-    background:#299fe3;
-    
-`
 const FormContainer = styled('div')`
     background:#ffffff;
     padding-top:5vh;
