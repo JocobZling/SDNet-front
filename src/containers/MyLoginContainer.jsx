@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React from 'react';
 import NormalLoginForm from "./MyLoginForm";
 import Header from "../constant/Header";
+import {Col, Row} from "antd";
 
 const LoginPage = styled('div')`
     height:100vh;
@@ -9,27 +10,36 @@ const LoginPage = styled('div')`
 
 const BodyContainer = styled('div')`
     background:#299fe3;
-    height:88vh;
+    
 `
 const FormContainer = styled('div')`
-    position:absolute;
     background:#ffffff;
-    margin-left:1300px;
-    margin-top:180px;
-    padding-top:50px;
-    padding-left:30px;
-    padding-right:30px;
-    width:45vh;
+    padding-top:5vh;
+    padding-left:3vh;
+    padding-right:3vh;
+    padding-bottom:2vh;
 `
 
 const MyLoginContainer = ()  => (
-    <LoginPage>
-        <Header/>
-        <BodyContainer>
-            <FormContainer>
-                <NormalLoginForm/>
-            </FormContainer>
-        </BodyContainer>
-    </LoginPage>
+    <Row>
+        <Col span={24}>
+            <Row style={{height:'12vh'}}>
+                <Col span={24}>
+                    <Header/>
+                </Col>
+            </Row>
+            <Row align={"middle"} style={{height:'88vh', background:'#299fe3'}}>
+                <Col span={24} style={{verticalAlign:'center'}}>
+                    <Row>
+                        <Col span={6} offset={16}>
+                            <FormContainer>
+                                <NormalLoginForm/>
+                            </FormContainer>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
+        </Col>
+    </Row>
 )
 export default MyLoginContainer;
