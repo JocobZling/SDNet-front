@@ -4,7 +4,8 @@ import {Provider} from 'react-redux';
 import {HashRouter, Route} from 'react-router-dom';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import {app, user,} from './ducks/index'
+import {app, user, detection} from './ducks/index'
+import {LoginContainer} from './containers/index';
 import HomeContainer from "./containers/App";
 import MyLoginContainer from "./containers/MyLoginContainer";
 import RegisterContainer from "./containers/RegisterContainer";
@@ -12,6 +13,7 @@ import RegisterContainer from "./containers/RegisterContainer";
 const reducer = combineReducers({
     app,
     user,
+    detection
 })
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));
@@ -22,7 +24,7 @@ ReactDOM.render(
         <HashRouter>
             <Route path={['/']} exact component={HomeContainer}/>
             <Route
-                path={['/index', '/profile', '/password']}
+                path={['/index', '/profile', '/password', '/splicingDetection']}
                 component={HomeContainer}/>
             <Route path='/login' exact component={MyLoginContainer}/>
             <Route path='/register' exact component={RegisterContainer}/>

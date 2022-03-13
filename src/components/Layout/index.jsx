@@ -41,10 +41,11 @@ class FaceLayout extends React.Component {
                 <Sider trigger={null}
                        collapsible
                        collapsed={this.state.collapsed}
+                       width="260"
                        style={{
                            overflow: 'auto',
                            left: 0,
-                           minHeight:'100vh'
+                           minHeight:'100vh',
                        }}>
                     <Logo>
                         <img src={img} alt={'logo'} className="logo"/>
