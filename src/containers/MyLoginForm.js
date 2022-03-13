@@ -29,8 +29,13 @@ const NormalLoginForm = ({login}) => {
         login(values)
     };
 
-    const email = encrypt.base64decode(cookie.load("email"));
-    const password = encrypt.base64decode(cookie.load("password"));
+    var email = cookie.load("email");
+    var password = cookie.load("password");
+
+    if(email!=null&&password!=null){
+        email = encrypt.base64decode(email);
+        password = encrypt.base64decode(password);
+    }
 
     return (
         <Form
