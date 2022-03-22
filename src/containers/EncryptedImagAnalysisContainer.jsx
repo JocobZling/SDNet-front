@@ -1,19 +1,19 @@
 import React from "react";
-import {actions as detectionActions} from "../ducks/detection";
+import {actions as analysisActions} from "../ducks/analysis";
 import {connect} from "react-redux";
+import MyAnalysis from "../components/Analysis/MyAnalysis";
 
 
-const EncryptedImageAnalysisContainer = ({uploadAndSplitImage, images}) => (
-    <div>123</div>
+const EncryptedImageAnalysisContainer = ({uploadAndGetHist, images}) => (
+    <MyAnalysis uploadAndSplitImage={uploadAndGetHist} images={images}/>
 )
 
 const mapStateToProps = ({detection}) => ({
     images: detection.images
 });
 
-
 const mapDispatchToProps = dispatch => ({
-    uploadAndSplitImage: (data) => dispatch(detectionActions.uploadAndSplitImage(data)),
+    uploadAndGetHist: (data) => dispatch(analysisActions.uploadAndGetHist(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EncryptedImageAnalysisContainer);

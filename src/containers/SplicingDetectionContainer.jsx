@@ -3,10 +3,10 @@ import SplicingIndex from "../components/Splicing/SplicingIndex";
 import {actions as detectionActions} from "../ducks/detection";
 import {connect} from "react-redux";
 
-
 const SplicingDetectionContainer = ({beginDetection, getDetectionDetail, result, textAreaValue}) => (
     <SplicingIndex beginDetection={beginDetection} getDetectionDetail={getDetectionDetail} result={result}
                    textAreaValue={textAreaValue}/>
+
 )
 
 const mapStateToProps = ({detection}) => ({

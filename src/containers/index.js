@@ -1,3 +1,3 @@
-import LoginContainer from "./LoginContainer";
+import MyLoginContainer from "./MyLoginContainer";
 
-export {LoginContainer};
+export {MyLoginContainer};

@@ -2,9 +2,6 @@ import React from 'react'
 import {actions as appActions} from './app.js';
 import * as request from '../utils/fetch-request';
 import HTTP_CODE from '../utils/http-code';
-import {message} from "antd";
-import {app, detection} from "./index";
-
 
 //action types
 export const types = {
