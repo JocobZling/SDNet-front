@@ -1,9 +1,10 @@
 import React from 'react';
 import UploadImage from "./UploadImage";
 
-const SplicingIndex = ({uploadAndSplitImage, images}) => (
+const SplicingIndex = ({beginDetection, getDetectionDetail, result, textAreaValue}) => (
     <div>
-        <UploadImage uploadAndSplitImage={uploadAndSplitImage} images={images}/>
+        <UploadImage beginDetection={beginDetection} getDetectionDetail={getDetectionDetail} result={result}
+                     textAreaValue={textAreaValue}/>
     </div>
 )
 

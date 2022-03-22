@@ -4,17 +4,20 @@ import {actions as detectionActions} from "../ducks/detection";
 import {connect} from "react-redux";
 
 
-const SplicingDetectionContainer = ({uploadAndSplitImage, images}) => (
-    <SplicingIndex uploadAndSplitImage={uploadAndSplitImage} images={images}/>
+const SplicingDetectionContainer = ({beginDetection, getDetectionDetail, result, textAreaValue}) => (
+    <SplicingIndex beginDetection={beginDetection} getDetectionDetail={getDetectionDetail} result={result}
+                   textAreaValue={textAreaValue}/>
 )
 
 const mapStateToProps = ({detection}) => ({
-    images: detection.images
+    result: detection.result,
+    textAreaValue: detection.textAreaValue
 });
 
 
 const mapDispatchToProps = dispatch => ({
-    uploadAndSplitImage: (data) => dispatch(detectionActions.uploadAndSplitImage(data)),
+    beginDetection: (data) => dispatch(detectionActions.beginDetection(data)),
+    getDetectionDetail: (data) => dispatch(detectionActions.getDetectionDetail(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SplicingDetectionContainer);

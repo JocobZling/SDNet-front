@@ -3,48 +3,74 @@ import {actions as appActions} from './app.js';
 import * as request from '../utils/fetch-request';
 import HTTP_CODE from '../utils/http-code';
 import {message} from "antd";
-import {app} from "./index";
+import {app, detection} from "./index";
 
 
 //action types
 export const types = {
-    SET_SPLIT_IMAGE: 'detection/SET_SPLIT_IMAGE',
+    BEGIN_DETECTION: 'detection/BEGIN_DETECTION',
+    GET_TEXTAREA_VALUE: 'detection/GET_TEXTAREA_VALUE',
+    SET_DETECTION_RESULT: 'detection/SET_DETECTION_RESULT'
 };
 
 export const actions = {
-    uploadAndSplitImage: (data) => {
+    beginDetection: (data) => {
         return dispatch => {
             (async () => {
                 dispatch(appActions.startFetch());
-                const res = await request.postFile('./api/splicing/encryptedImage/' + 1, data);
+                const res = await request.get(`./api/face/faceDetection/${data}/1`);
                 if (res.status === HTTP_CODE.OK) {
-                    dispatch(actions.setSplitImage(res.body))
                     dispatch(appActions.finishFetch());
                 }
             })();
         }
     },
-    setSplitImage: (images) => {
+    getDetectionDetail: (data) => {
+        return dispatch => {
+            window.timer = setInterval(async () => {
+                dispatch(appActions.startFetch());
+                const res = await request.get(`./api/face/detectionDetail/${data}`);
+                if (res.status === HTTP_CODE.OK && res.body.flag === "go on") {
+                    console.log(res.body)
+                    dispatch(actions.setFaceDetail(res.body.textAreaValue))
+                    dispatch(appActions.finishFetch());
+                }
+                if (res.status === HTTP_CODE.OK && res.body.flag === "STOP") {
+                    clearInterval(window.timer);
+                    console.log(res.body)
+                    dispatch(actions.setFaceDetail(res.body.textAreaValue))
+                    dispatch(actions.setResult(res.body.result))
+                    dispatch(appActions.finishFetch());
+                }
+            }, 30);
+        }
+    },
+    setFaceDetail: (textAreaValue) => {
         return {
-            type: types.SET_SPLIT_IMAGE,
-            images: images
+            type: types.GET_TEXTAREA_VALUE,
+            textAreaValue: textAreaValue
+        }
+    },
+    setResult: (result) => {
+        return {
+            type: types.SET_DETECTION_RESULT,
+            result: result
         }
     },
 }
 
 const initialState = {
-    images: {
-        originalImage: "",
-        splitOne: "",
-        splitTwo: ""
-    },
+    textAreaValue: [],
+    result: []
 };
 
 // reducer
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case types.SET_SPLIT_IMAGE:
-            return {...state, images: action.images};
+        case types.GET_TEXTAREA_VALUE:
+            return {...state, textAreaValue: action.textAreaValue};
+        case types.SET_DETECTION_RESULT:
+            return {...state, result: action.result}
         default:
             return state
     }

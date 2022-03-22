@@ -20,10 +20,10 @@ const LeftMenu = () => (
             <Link to={'/index'}>欢迎</Link>
         </Menu.Item>
         <Menu.Item key="/splicingDetection" icon={<UnorderedListOutlined/>}>
-            <Link to={'/splicingDetection'}>支持隐私保护的拼接检测</Link>
+            <Link to={'/splicingDetection'}>支持隐私保护的伪脸检测</Link>
         </Menu.Item>
         <Menu.Item key="/encryptedImagAnalysis" icon={<UnorderedListOutlined/>}>
-            <Link to={'/encryptedImagAnalysis'}>加密图像分析</Link>
+            <Link to={'/encryptedImagAnalysis'}>加密人脸分析</Link>
         </Menu.Item>
         <SubMenu key="sub1" icon={<UserOutlined/>} title="个人帐号管理">
             <Menu.Item key="/profile">
