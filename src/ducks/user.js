@@ -22,7 +22,7 @@ export const actions = {
                 const res = await request.postWithBody('./api/users/login', data);
                 if (res.status === HTTP_CODE.OK) {
                     window.localStorage.setItem("jwt", res.body.token);
-                    window.localStorage.setItem("user", res.body.user);
+                    window.localStorage.setItem("user", res.body.user.id);
                     message.success("登录成功！");
                     window.location.href = '/';
                     dispatch(appActions.finishFetch());
