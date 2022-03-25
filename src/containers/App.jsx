@@ -25,6 +25,7 @@ const HomeContainer = () => {
                 {/*<Route path='*' exact component={WelcomeContainer}/>*/}
                 <Route path='/splicingDetection' exact component={SplicingDetectionContainer}/>
                 <Route path='/encryptedImagAnalysis' exact component={EncryptedImagAnalysisContainer}/>
+                <Route path='/faceHistory' exact component={FaceHistoryContainer}/>
             </Switch>
         </HomePage>)
 }
