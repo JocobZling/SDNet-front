@@ -5,6 +5,7 @@ import EdgeServer from '../../images/edgeServerOne.png';
 import Reaction from '../../images/reaction.png';
 
 const {Step} = Steps;
+
 const {TextArea} = Input;
 
 const Detection = ({pictureOnePosition, pictureTwoPosition, detectionId, beginDetection, getDetectionDetail, result, textAreaValue}) => {

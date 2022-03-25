@@ -12,6 +12,7 @@ import {detection} from "../../ducks";
 
 const action = '/api/face/encryptedImage/' + utils.getHeaderFromLocalStorage('user')
 
+
 function getBase64(img, callback) {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result));

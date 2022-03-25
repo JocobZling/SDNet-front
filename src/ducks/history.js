@@ -12,6 +12,7 @@ export const types = {
 
 export const actions = {
 
+
         getFaceHistory : (page=1) => {
             return dispatch => {
                 (async () => {
@@ -25,6 +26,8 @@ export const actions = {
                 })()
             }
         },
+
+
     getCopyMoveHistory: (data) => {
         return dispatch => {
             (async () => {

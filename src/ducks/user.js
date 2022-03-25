@@ -4,6 +4,9 @@ import {actions as appActions} from './app.js';
 import * as request from '../utils/fetch-request';
 import HTTP_CODE from '../utils/http-code';
 
+import {getHeaderFromLocalStorage} from "../utils/fetch-request";
+
+
 //action types
 export const types = {
     SET_USER: 'user/SET_USER',
@@ -34,17 +37,53 @@ export const actions = {
         return dispatch => {
             (async () => {
                 dispatch(appActions.startFetch());
-                debugger;
+                //  debugger;
                 const res = await request.postWithBody('./api/users/register', data);
                 if (res.status === HTTP_CODE.OK) {
                     message.success("您已注册成功，请登录！");
                     window.location.href = "http://localhost:3000/#/login"
                     dispatch(appActions.finishFetch());
-                }else{
+                } else {
                     message.warn("此邮箱已注册，请登录！");
                     window.location.href = "http://localhost:3000/#/login"
                     dispatch(appActions.finishFetch());
                 }
+            })();
+        }
+    },
+    password: (data) => {
+        return dispatch => {
+            (async () => {
+                dispatch(appActions.startFetch());
+                const user = getHeaderFromLocalStorage('user');
+                let userId = JSON.parse(JSON.parse(user));
+                // debugger;
+                const res = await request.update('./api/users/password/' + userId, data);
+                if (res.status === HTTP_CODE.OK) {
+                    message.success("修改密码成功");
+                    dispatch(appActions.finishFetch());
+                } else {
+                    message.warn("修改密码失败");
+                    dispatch(appActions.finishFetch());
+                }
+
+            })();
+        }
+    },
+    profile: (data) => {
+        return dispatch => {
+            (async () => {
+                dispatch(appActions.startFetch());
+                // debugger;
+                const res = await request.postWithBody('./api/users/profile', data);
+                if (res.status === HTTP_CODE.OK) {
+                    message.success("修改个人信息成功");
+                    dispatch(appActions.finishFetch());
+                } else {
+                    message.warn("修改个人信息失败");
+                    dispatch(appActions.finishFetch());
+                }
+
             })();
         }
     },

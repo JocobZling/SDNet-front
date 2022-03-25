@@ -8,7 +8,6 @@ import MyLoginContainer from "./MyLoginContainer";
 import SplicingDetectionContainer from "./SplicingDetectionContainer";
 import EncryptedImagAnalysisContainer from "./EncryptedImagAnalysisContainer";
 
-
 const HomeContainer = () => {
     // if (!window.localStorage.getItem('jwt')) {
     //     window.location.href = '/#/login'
