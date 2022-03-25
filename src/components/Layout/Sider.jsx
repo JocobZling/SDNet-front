@@ -13,9 +13,7 @@ import '../../css/index.css'
 const {SubMenu} = Menu;
 
 const LeftMenu = () => (
-    <Menu theme="dark"
-          mode="inline"
-          selectedKeys={`/${window.location.hash.split('#')[1].split('/')[1]}`}>
+    <Menu theme="dark" mode="inline" selectedKeys={`/${window.location.hash.split('#')[1].split('/')[1]}`}>
         <Menu.Item key="/index" icon={<HeartOutlined/>}>
             <Link to={'/index'}>欢迎</Link>
         </Menu.Item>

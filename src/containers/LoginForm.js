@@ -21,7 +21,6 @@ const style = {
     color: 'white'
 };
 
-// 注册模块
 const CollectionCreateForm = ({visible, onCreate, onCancel}) => {
     const [form] = Form.useForm();
     return (
@@ -52,7 +51,7 @@ const CollectionCreateForm = ({visible, onCreate, onCancel}) => {
                 className='register'
             >
                 <Form.Item
-                    name="name"
+                    name="username"
                     label="用户名"
                     rules={[{required: true, message: '请输入用户名'}]}
                 >
@@ -89,7 +88,6 @@ const CollectionCreateForm = ({visible, onCreate, onCancel}) => {
 const LoginForm = ({login,register}) => {
     const [visible, setVisible] = useState(false);
 
-    // 注册函数
     const onCreate = (values) => {
         console.log('Received values of form: ', values);
         register(values)
@@ -120,9 +118,9 @@ const LoginForm = ({login,register}) => {
                 <Title style={{color: 'white'}}>支持隐私保护的检测系统</Title>
             </Col>
             <Form.Item
-                label="用户邮箱"
-                name="email"
-                rules={[{required: true, message: '请输入用户邮箱'}]}
+                label="用户名"
+                name="username"
+                rules={[{required: true, message: '请输入用户名'}]}
                 style={style}
             >
                 <Input/>

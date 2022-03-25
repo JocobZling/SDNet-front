@@ -105,7 +105,6 @@ export const postWithBody = async (url, data) => {
         }
         const {status} = res;
         const body = await res.json();
-        // assign分配 将source的内容加入file
         return Object.assign({file: {status: 'done'}}, {body}, {status})
     } catch (ex) {
         return {status: ex.status}
@@ -157,31 +156,6 @@ export const updateThenHasBody = async (url, data) => {
         const {status} = res
         authenticationFilter(status)
         return Object.assign({}, {body}, {status})
-    } catch (ex) {
-        return {status: ex.status}
-    }
-}
-
-export const postFile = async (url, data) => {
-    try {
-        const res = await fetch(url, {
-            method: HTTP_METHOD.POST,
-            credentials: 'include',
-            headers: new Headers({
-                'Content-Type': 'multipart/form-data',
-                'Accept': 'application/json',
-                id: getHeaderFromLocalStorage('id'),
-                token: getHeaderFromLocalStorage('jwt'),
-                sessionId: getHeaderFromLocalStorage('sessionId')
-            }),
-            body: JSON.stringify(data)
-        });
-        if (!res.ok) {
-            return errHandler(res)
-        }
-        const {status} = res;
-        const body = await res.json();
-        return Object.assign({file: {status: 'done'}}, {body}, {status})
     } catch (ex) {
         return {status: ex.status}
     }

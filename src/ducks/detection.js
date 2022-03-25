@@ -54,6 +54,82 @@ export const actions = {
             result: result
         }
     },
+    singleFaceImageDetection: (data) => {
+        return dispatch => {
+            (async () => {
+                dispatch(appActions.startFetch());
+                const res = await request.postWithBody('./face/userFaceUpLoad', data);
+                if (res.status === HTTP_CODE.OK) {
+                    dispatch(actions.setFaceDetection(res.body))
+                    message.info({
+                        content: res.body.msg,
+                        style: {
+                            marginTop: '40vh',
+                        },
+                    })
+                    dispatch(appActions.finishFetch());
+                }
+            })();
+        }
+    },
+    copyMoveZipDetection:(data)=>{
+      return dispatch  =>{
+          (async () => {
+              dispatch(appActions.startFetch());
+              const res = await request.postWithBody('/cmAndSt/doCMAndSTInBatchByZip', data);
+              if (res.status === HTTP_CODE.OK) {
+                  dispatch(actions.setZipDetection(res.body))
+                  message.info({
+                      content: res.body.data,
+                      style: {
+                          marginTop: '40vh'
+                      }
+                  })
+              }
+          })();
+      }
+    },
+    faceZipDetection: (data) => {
+        return dispatch => {
+            (async () => {
+                dispatch(appActions.startFetch());
+                const res = await request.postWithBody('./face/doFaceDetInBatchByZip', data);
+                if (res.status === HTTP_CODE.OK) {
+                    dispatch(actions.setZipDetection(res.body))
+                    message.info({
+                        content: res.body.data,
+                        style: {
+                            marginTop: '40vh'
+                        }
+                    })
+                }
+            })();
+        }
+    },
+    setCopyMoveDetection: (detection) => {
+        return {
+            type: types.SET_COPY_MOVE_DETECTION,
+            detection: detection
+        }
+    },
+    setFaceDetection: (detection) => {
+        return {
+            type: types.SET_FACE_DETECTION,
+            detection: detection
+        }
+    },
+    setZipDetection: (detection) => {
+        return {
+            type: types.SET_ZIP_DETECTION,
+            detection: detection
+        }
+    },
+    setCopyMoveAndSourceDetection: (detection) => {
+        return {
+            type: types.SET_COPY_MOVE_SOURCE_DETECTION,
+            detection: detection
+        }
+    }
 }
 
 const initialState = {
