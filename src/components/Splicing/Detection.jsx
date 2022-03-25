@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Row, Steps, Col, Popover, Image, Input} from 'antd';
+import {Button, Row, Steps, Col, Popover, Image, Input, Progress} from 'antd';
 import {SearchOutlined, DownloadOutlined} from '@ant-design/icons';
 import EdgeServer from '../../images/edgeServerOne.png';
 import Reaction from '../../images/reaction.png';
@@ -8,17 +8,6 @@ const {Step} = Steps;
 const {TextArea} = Input;
 
 const Detection = ({pictureOnePosition, pictureTwoPosition, detectionId, beginDetection, getDetectionDetail, result, textAreaValue}) => {
-    const customDot = (dot, {status, index}) => (
-        <Popover
-            content={
-                <span>
-        step {index} status: {status}
-      </span>
-            }
-        >
-            {dot}
-        </Popover>
-    );
     const begin = () => {
         beginDetection(detectionId);
         getDetectionDetail(detectionId);
@@ -27,15 +16,6 @@ const Detection = ({pictureOnePosition, pictureTwoPosition, detectionId, beginDe
         <div>
             <Button icon={<SearchOutlined/>} onClick={begin}>开始检测</Button>
             <Row align="middle">
-                {/*<Col span={24} style={{marginTop: "13px"}}>*/}
-                {/*    <Steps current={1} progressDot={customDot}>*/}
-                {/*        <Step title="生成随机数"/>*/}
-                {/*        <Step title="自适应残差"/>*/}
-                {/*        <Step title="通道注意力机制"/>*/}
-                {/*        <Step title="EfficientNetB0"/>*/}
-                {/*        <Step title="结果"/>*/}
-                {/*    </Steps>,*/}
-                {/*</Col>*/}
                 <Col span={3} style={{marginTop: "20px"}}>
                     <Image
                         width={140}
@@ -70,6 +50,13 @@ const Detection = ({pictureOnePosition, pictureTwoPosition, detectionId, beginDe
                     结果：{result[1]}
                 </Col>
 
+                <Col span={24} strokeColor={{
+                    '0%': '#108ee9',
+                    '100%': '#87d068',
+                }}>
+                    检测进度：
+                    <Progress percent={textAreaValue.length} status="active"/>
+                </Col>
             </Row>
             <Row style={{marginTop: "20px"}} gutter={[24, 20]}>
                 <Col span={24}>交互详情：
