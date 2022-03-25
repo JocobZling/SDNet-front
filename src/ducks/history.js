@@ -11,18 +11,20 @@ export const types = {
 };
 
 export const actions = {
-    getFaceHistory: (data) => {
-        return dispatch => {
-            (async () => {
-                dispatch(appActions.startFetch());
-                const res = await request.postWithBody('./face/getFaceHistoryByUid', data);
-                if (res.status === HTTP_CODE.OK) {
-                    dispatch(actions.setFaceHistory(res.body.data))
-                    dispatch(appActions.finishFetch());
-                }
-            })();
-        }
-    },
+
+        getFaceHistory : (page=1) => {
+            return dispatch => {
+                (async () => {
+                    const res = await request.get(`./face/getFaceHistory/pageable?page=${--page}`)
+                    if (res.status === HTTP_CODE.OK) {
+                        dispatch({
+                            type: 'REFRESH_OBJECTIVE_QUIZ_PAGEABLE',
+                            data: res.body
+                        })
+                    }
+                })()
+            }
+        },
     getCopyMoveHistory: (data) => {
         return dispatch => {
             (async () => {
