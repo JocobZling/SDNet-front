@@ -33,6 +33,9 @@ const LeftMenu = () => (
                 <Link to={'/password'}>帐号安全管理</Link>
             </Menu.Item>
         </SubMenu>
+        <Menu.Item key="/faceHistory" icon={<UnorderedListOutlined/>}>
+            <Link to={'/faceHistory'}>历史检测记录</Link>
+        </Menu.Item>
     </Menu>
 )
 
