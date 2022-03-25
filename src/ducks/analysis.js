@@ -13,7 +13,7 @@ export const actions = {
         return dispatch => {
             (async () => {
                 dispatch(appActions.startFetch());
-                const res = await request.postFile('./api/analysis/hist', data);
+                const res = await request.postWithBody('./api/analysis/hist', data);
                 if (res.status === HTTP_CODE.OK) {
                     dispatch(actions.getHistImage(res.body))
                     dispatch(appActions.finishFetch());

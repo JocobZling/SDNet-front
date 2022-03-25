@@ -7,10 +7,12 @@ import thunkMiddleware from 'redux-thunk';
 
 import {app, user, detection} from './ducks/index';
 import HomeContainer from "./containers/App";
+import LoginContainer from "./containers/LoginContainer";
 
 const reducer = combineReducers({
     app,
     user,
+    detection
 })
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));

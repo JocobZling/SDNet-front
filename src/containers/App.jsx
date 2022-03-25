@@ -7,6 +7,8 @@ import UserProfileContainer from "./UserProfile";
 import MyLoginContainer from "./MyLoginContainer";
 import SplicingDetectionContainer from "./SplicingDetectionContainer";
 import EncryptedImagAnalysisContainer from "./EncryptedImagAnalysisContainer";
+import FaceHistoryContainer from "./FaceHistoryContainer";
+
 
 const HomeContainer = () => {
     // if (!window.localStorage.getItem('jwt')) {
