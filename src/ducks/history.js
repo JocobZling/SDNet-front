@@ -6,76 +6,40 @@ import HTTP_CODE from '../utils/http-code';
 
 //action types
 export const types = {
-    GET_FACE_HISTORY: 'history/GET_FACE_HISTORY',
-    GET_COPY_MOVE_HISTORY: 'history/GET_COPY_MOVE_HISTORY',
+    SET_FACE_HISTORY: 'history/SET_FACE_HISTORY',
 };
 
 export const actions = {
-
-
-        getFaceHistory : (page=1) => {
-            return dispatch => {
-                (async () => {
-                    const res = await request.get(`./face/getFaceHistory/pageable?page=${--page}`)
-                    if (res.status === HTTP_CODE.OK) {
-                        dispatch({
-                            type: 'REFRESH_OBJECTIVE_QUIZ_PAGEABLE',
-                            data: res.body
-                        })
-                    }
-                })()
-            }
-        },
-
-
-    getCopyMoveHistory: (data) => {
+    getFaceHistory: (page = 1, userId) => {
         return dispatch => {
             (async () => {
-                    dispatch(appActions.startFetch());
-                    const res = await request.postWithBody('./cmAndSt/getHistoryByUid', data);
-                    if (res.status === HTTP_CODE.OK) {
-                        dispatch(actions.setCopyMoveHistory(res.body.data))
-                        dispatch(appActions.finishFetch())
-                    }
+                const res = await request.get(`./api/history/face/pageable/${userId}?page=${--page}`)
+                if (res.status === HTTP_CODE.OK) {
+                    debugger;
+                    dispatch(actions.setFaceHistory(res.body));
                 }
-            )();
+            })()
         }
     },
     setFaceHistory: (history) => {
         return {
-            type: types.GET_FACE_HISTORY,
-            history: history
-        }
-    },
-    setCopyMoveHistory: (history) => {
-        return {
-            type: types.GET_COPY_MOVE_HISTORY,
-            history: history
+            type: types.SET_FACE_HISTORY,
+            faceHistory: history
         }
     }
 }
 
 const initialState = {
     faceHistory: {
-        data: {
-            list: []
-        }
+        content:[]
     },
-    copyMoveHistory: {
-        data: {
-            list: []
-        }
-    }
 };
 
 // reducer
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case types.GET_FACE_HISTORY:
-            return {...state, faceHistory: action.history};
-        case types.GET_COPY_MOVE_HISTORY:
-
-            return {...state, copyMoveHistory: action.history};
+        case types.SET_FACE_HISTORY:
+            return {...state, faceHistory: action.faceHistory};
         default:
             return state
     }

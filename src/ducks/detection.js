@@ -28,13 +28,11 @@ export const actions = {
                 dispatch(appActions.startFetch());
                 const res = await request.get(`./api/face/detectionDetail/${data}`);
                 if (res.status === HTTP_CODE.OK && res.body.flag === "go on") {
-                    console.log(res.body)
                     dispatch(actions.setFaceDetail(res.body.textAreaValue))
                     dispatch(appActions.finishFetch());
                 }
                 if (res.status === HTTP_CODE.OK && res.body.flag === "STOP") {
                     clearInterval(window.timer);
-                    console.log(res.body)
                     dispatch(actions.setFaceDetail(res.body.textAreaValue))
                     dispatch(actions.setResult(res.body.result))
                     dispatch(appActions.finishFetch());
