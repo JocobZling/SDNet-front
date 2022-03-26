@@ -55,11 +55,10 @@ export const actions = {
         return dispatch => {
             (async () => {
                 dispatch(appActions.startFetch());
-                const user = getHeaderFromLocalStorage('user');
-                let userId = JSON.parse(JSON.parse(user));
+                const userId = getHeaderFromLocalStorage('user');
                 // debugger;
                 const res = await request.update('./api/users/password/' + userId, data);
-                if (res.status === HTTP_CODE.OK) {
+                if (res.status === HTTP_CODE.NO_CONTENT) {
                     message.success("修改密码成功");
                     dispatch(appActions.finishFetch());
                 } else {
@@ -75,7 +74,8 @@ export const actions = {
             (async () => {
                 dispatch(appActions.startFetch());
                 // debugger;
-                const res = await request.postWithBody('./api/users/profile', data);
+                const userId = getHeaderFromLocalStorage('user');
+                const res = await request.update('./api/users/profile/'+userId, data);
                 if (res.status === HTTP_CODE.OK) {
                     message.success("修改个人信息成功");
                     dispatch(appActions.finishFetch());
