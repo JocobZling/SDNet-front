@@ -1,0 +1,33 @@
+.container{
+    font-size: 25px;
+    text-align: center;
+}
+Modify-information {
+    width: 300px;
+    margin: 100px auto 0;
+}
+h1 {
+    font-weight: bolder;
+    text-align: left;
+    font-color: black;
+
+}
+
+.button{
+    width: 250px;
+    height: 40px;
+}
+.button1{
+    width: 100px;
+    height: 30px;
+}
+
+.input{
+    width:600px;
+    height:40px;
+    font-size:16px;
+    text-align: center;
+}
+label{
+    font-size:30px;
+}
