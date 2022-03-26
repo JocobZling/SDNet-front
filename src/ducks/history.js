@@ -15,7 +15,6 @@ export const actions = {
             (async () => {
                 const res = await request.get(`./api/history/face/pageable/${userId}?page=${--page}`)
                 if (res.status === HTTP_CODE.OK) {
-                    debugger;
                     dispatch(actions.setFaceHistory(res.body));
                 }
             })()
