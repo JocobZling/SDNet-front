@@ -1,94 +1,88 @@
 import React from 'react';
-import {Typography, Divider} from 'antd';
-
-const {Title, Paragraph, Text, Link} = Typography;
-
-const blockContent = `AntV 是蚂蚁金服全新一代数据可视化解决方案，致力于提供一套简单方便、专业可靠、不限可能的数据可视化最佳实践。得益于丰富的业务场景和用户需求挑战，AntV 经历多年积累与不断打磨，已支撑整个阿里集团内外 20000+ 业务系统，通过了日均千万级 UV 产品的严苛考验。
-我们正在基础图表，图分析，图编辑，地理空间可视化，智能可视化等各个可视化的领域耕耘，欢迎同路人一起前行。`;
-
+import {Typography, Carousel,Divider,Collapse,Image } from 'antd';
+import '../css/welcome.css'
+import styled from "styled-components";
+import pic1 from './../images/pic1.png'
+import pic2 from './../images/pic2.png'
+import pic3 from './../images/pic3.png'
+const { Panel } = Collapse;
+function callback(key) {
+    console.log(key);
+}
+const text = `
+  A dog is a type of domesticated animal.
+  Known for its loyalty and faithfulness,
+  it can be found as a welcome guest in many households across the world.
+`;
+const bj = `
+  计算机视觉和图像处理技术的快速发展，使得人们已经能够在各式软件上轻松生成各种各样的伪脸照片。
+  伪脸生成技术的发展给一些不法分子提供了诈骗、造假活动的契机,不法分子完全可以在社交网站上使用虚假的个人图片来进行欺骗。
+  社会中出现的很多利用虚假人脸进行诈骗的例子足以证明：个人隐私和财产安全受到严重威胁。
+  相比于虹膜、指纹等其他生物识别信息，人脸具有无意识和非接触性的特点，
+可以远距离发挥作用，且能在长时间、大规模里积累，具有很强的侵入性。当人脸信息和其他隐私信息产生关联时，一旦出现泄露，危害性和危险性不言而喻。
+综上所述，开发一个鲁棒的、具有隐私保护特性的伪脸检测系统，不仅有利于打击利用伪脸生成技术进行非法犯罪的不法分子，更有利于保护用户在检测过程中核心隐私安全。
+`;
+const login=`用户账号登录：本软件将用户输入的邮箱和密码与数据库中已注册的账号密码比较，若匹配，则开放软件所有功能。`
+const res=`用户账号注册：用户需输入用户名、邮箱、密码、确认密码进行注册，当输入内容符合各项要求时，注册成功。`
+const facejc=`用户上传单张图片，显示该图片加性分解结果。点击开始检测按钮，
+离线阶段第三方诚实服务器生成若干检测时需要的随机数，在线阶段双服务器进行交互完成若干子协议包含Sigmoid、ReLU等，
+并在页面上展示完成进度，最后分别输出服务器的计算结果，用户端对计算结果进行相加，即可获得单张图片的检测结果。前后端的交互详情可以点击按钮下载。`
+const jm=`用户上传单张图片,软件对该图片进行加性秘密分解，并在界面上展示分解图和三张图的频率直方图，以展现加密人脸分析功能的实现。`
+const zhaq=`账号安全管理：本软件支持用户更改密码，用户首先输入原密码，新密码和确认密码。点击修改后，软件首先检查原密码是否正确，其次检查新密码与确认密码是否相匹配，
+只有当这两项检查都通过后，才修改数据库中的账号信息。`
+const grxx=`个人信息管理：用户可以更改昵称、头像、邮箱。`
+const history=`展示当前用户的历史检测记录，包括序号、调用时间、结束时间、计算结果等内容，并能对历史记录进行分页。`
 const HomePage = () => (
     <Typography>
-        <Title>欢迎</Title>
-        <Title>Introduction</Title>
-        <Paragraph>
-            In the process of internal desktop applications development, many different design specs and
-            implementations would be involved, which might cause designers and developers difficulties and
-            duplication and reduce the efficiency of development.
-        </Paragraph>
-        <Paragraph>
-            After massive project practice and summaries, Ant Design, a design language for background
-            applications, is refined by Ant UED Team, which aims to
-            <Text strong>
-                uniform the user interface specs for internal background projects, lower the unnecessary
-                cost of design differences and implementation and liberate the resources of design and
-                front-end development
-            </Text>.
-        </Paragraph>
-        <Title level={2}>Guidelines and Resources</Title>
-        <Paragraph>
-            We supply a series of design principles, practical patterns and high quality design resources
-            (<Text code>Sketch</Text> and <Text code>Axure</Text>), to help people create their product
-            prototypes beautifully and efficiently.
-        </Paragraph>
+        <Divider orientation="left" plain>欢迎使用</Divider>
+        <Carousel autoplay className={"show"}>
+            <div>
+                <Image className="picture"  src={pic1}/>
+            </div>
+            <div>
+                <Image className="picture"  src={pic2}/>
+            </div>
+            <div>
+                <Image className="picture"  src={pic3}/>
+            </div>
+        </Carousel>
+        <Divider orientation="left" plain>使用须知</Divider>
+        <Collapse onChange={callback}>
+            <Panel header="开发背景" key="1">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;{bj}</p>
+            </Panel>
+            <Panel header="软件功能" key="2">
+                <Collapse defaultActiveKey="1">
+                    <Panel header="注册登录" key="4">
+                        <p>{login}</p>
+                        <p>{res}</p>
+                    </Panel>
+                </Collapse>
+                <Collapse defaultActiveKey="1">
+                    <Panel header="支持隐私保护的伪脸检测" key="5">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;{facejc}</p>
+                    </Panel>
+                </Collapse>
+                <Collapse defaultActiveKey="1">
+                    <Panel header="加密人脸分析" key="6">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;{jm}</p>
+                    </Panel>
+                </Collapse>
+                <Collapse defaultActiveKey="1">
+                    <Panel header="用户信息管理" key="6">
+                        <p>{zhaq}</p>
+                        <p>{grxx}</p>
+                    </Panel>
+                </Collapse>
+                <Collapse defaultActiveKey="1">
+                    <Panel header="历史检测记录" key="6">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;{history}</p>
+                    </Panel>
+                </Collapse>
 
-        <Paragraph>
-            <ul>
-                <li>
-                    <Link href="/docs/spec/proximity">Principles</Link>
-                </li>
-                <li>
-                    <Link href="/docs/pattern/navigation">Patterns</Link>
-                </li>
-                <li>
-                    <Link href="/docs/resource/download">Resource Download</Link>
-                </li>
-            </ul>
-        </Paragraph>
+            </Panel>
+        </Collapse>
 
-        <Paragraph>
-            Press <Text keyboard>Esc</Text> to exit...
-        </Paragraph>
-
-        <Divider/>
-
-        <Title>介绍</Title>
-        <Paragraph>
-            蚂蚁的企业级产品是一个庞大且复杂的体系。这类产品不仅量级巨大且功能复杂，而且变动和并发频繁，常常需要设计与开发能够快速的做出响应。同时这类产品中有存在很多类似的页面以及组件，可以通过抽象得到一些稳定且高复用性的内容。
-        </Paragraph>
-        <Paragraph>
-            随着商业化的趋势，越来越多的企业级产品对更好的用户体验有了进一步的要求。带着这样的一个终极目标，我们（蚂蚁金服体验技术部）经过大量的项目实践和总结，逐步打磨出一个服务于企业级产品的设计体系
-            Ant Design。基于<Text mark>『确定』和『自然』</Text>
-            的设计价值观，通过模块化的解决方案，降低冗余的生产成本，让设计者专注于
-            <Text strong>更好的用户体验</Text>。
-        </Paragraph>
-        <Title level={2}>设计资源</Title>
-        <Paragraph>
-            我们提供完善的设计原则、最佳实践和设计资源文件（<Text code>Sketch</Text> 和
-            <Text code>Axure</Text>），来帮助业务快速设计出高质量的产品原型。
-        </Paragraph>
-
-        <Paragraph>
-            <ul>
-                <li>
-                    <Link href="/docs/spec/proximity">设计原则</Link>
-                </li>
-                <li>
-                    <Link href="/docs/pattern/navigation">设计模式</Link>
-                </li>
-                <li>
-                    <Link href="/docs/resource/download">设计资源</Link>
-                </li>
-            </ul>
-        </Paragraph>
-
-        <Paragraph>
-            <blockquote>{blockContent}</blockquote>
-            <pre>{blockContent}</pre>
-        </Paragraph>
-
-        <Paragraph>
-            按<Text keyboard>Esc</Text>键退出阅读……
-        </Paragraph>
     </Typography>
 )
 
