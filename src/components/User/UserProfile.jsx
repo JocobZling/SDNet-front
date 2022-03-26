@@ -1,6 +1,6 @@
 import React from 'react';
-import {Col, Row, Image, Button, Input, Divider} from "antd";
-import '../../css/userrInfo.css'
+import {Col, Row, Image, Button, input} from "antd";
+import '../../css/test.css'
 import Form from "antd/es/form";
 import {actions as userActions} from "../../ducks/user";
 import {connect} from "react-redux";
@@ -9,6 +9,8 @@ import {withRouter} from "react-router-dom";
 const UserProfile = ({profile}) => {
     const onFinish = (values) => {
         console.log('Success:', values);
+        console.log('Received values of form: ', values);
+        profile(values)
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -16,44 +18,49 @@ const UserProfile = ({profile}) => {
     };
 
     return (
-        <Form  className={"container "}
+        <Form
             name="profile"
             initialValues={{
                 remember: true,
             }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}>
+            <Row
 
-            <h1>个人信息修改</h1>
-            <Col xs={{span: 1, offset: 1}}> <Image width={50}
-                src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"/></Col>
-            <Divider />
-            <Form.Item
-                label={"昵称："}
-                    name="name"
-                    rules={[
-                        {
-                            required: true,
-                            message: '请输入新的昵称',
-                        },
-                    ]}><Input  placeholder={"请输入新的用户名"} className={"input"}/></Form.Item>
-                <Form.Item
-                    label={"邮箱："}
-                    name="email"
-                    rules={[
-                        {
-                            required: true,
-                            message: '请输入新的邮箱',
-                        },
-                    ]}><Input placeholder={"请输入新的邮箱"} className={"input"} /></Form.Item>
-            <br/>
-            <Form.Item
-                label={"头像："}
-                name="tx">
-                <button className={"button1"}>上传图片</button>
-            </Form.Item>
-                <Form.Item><Button htmlType="submit" className={"button"} >确认修改</Button></Form.Item>
+                gutter={[40, 40]} style={{marginTop: '20px'}}>
 
+                <Col xs={{span: 4, offset: 3}}> <Image
+                    width={50}
+                    src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+                /></Col>
+                <Col xs={{span: 17}}><h1>个人信息</h1></Col>
+                <Col xs={{span: 4, offset: 3}}>昵称：</Col>
+                <Col xs={{span: 17}}>
+                    <Form.Item
+                        name="name"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入新的昵称',
+                            },
+                        ]}><input placeholder={"请输入新的用户名"} style={{width: 200, height: 30, fontSize: 12}}/></Form.Item></Col>
+                <Col xs={{span: 4, offset: 3}}>邮箱：</Col>
+                <Col xs={{span: 17}}>
+                    <Form.Item
+                        name="email"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入新的邮箱',
+                            },
+                        ]}><input placeholder={"请输入新的邮箱"} style={{width: 200, height: 30, fontSize: 12}}/></Form.Item></Col>
+                <Col xs={{span: 4, offset: 3}}>头像：</Col>
+                <Col xs={{span: 17}}>
+                    <button>上传图片</button>
+                </Col>
+                <Col xs={{span: 6, offset: 7}}><Form.Item><Button type="primary" htmlType="submit">确认修改</Button></Form.Item></Col>
+            </Row
+            >
         </Form>
     );
 }
