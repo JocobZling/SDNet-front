@@ -27,17 +27,19 @@ export const actions = {
             window.timer = setInterval(async () => {
                 dispatch(appActions.startFetch());
                 const res = await request.get(`./api/face/detectionDetail/${data}`);
-                if (res.status === HTTP_CODE.OK && res.body.flag === "go on") {
+                if (res.status === HTTP_CODE.OK && res.body.flag === "go on" && res.body.textAreaValue.length) {
+                    console.log(res.body.textAreaValue)
                     dispatch(actions.setFaceDetail(res.body.textAreaValue))
                     dispatch(appActions.finishFetch());
                 }
                 if (res.status === HTTP_CODE.OK && res.body.flag === "STOP") {
                     clearInterval(window.timer);
+                    console.log(res.body.textAreaValue)
                     dispatch(actions.setFaceDetail(res.body.textAreaValue))
                     dispatch(actions.setResult(res.body.result))
                     dispatch(appActions.finishFetch());
                 }
-            }, 30);
+            }, 120);
         }
     },
     setFaceDetail: (textAreaValue) => {
