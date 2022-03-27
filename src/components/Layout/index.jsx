@@ -1,4 +1,4 @@
-import {Layout, Menu} from 'antd';
+import {Layout} from 'antd';
 import React from 'react';
 import {withRouter} from 'react-router-dom'
 import {
@@ -49,7 +49,7 @@ class FaceLayout extends React.Component {
                        }}>
                     <Logo>
                         <img src={img} alt={'logo'} className="logo"/>
-                        <div>图像取证系统</div>
+                        <div style={{textAlign:'center'}}>支持隐私保护的伪脸检测系统</div>
                     </Logo>
                     <LeftMenu/>
                 </Sider>

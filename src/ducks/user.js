@@ -1,5 +1,5 @@
 import React from 'react'
-import {message, notification, Button} from 'antd';
+import {message} from 'antd';
 import {actions as appActions} from './app.js';
 import * as request from '../utils/fetch-request';
 import HTTP_CODE from '../utils/http-code';

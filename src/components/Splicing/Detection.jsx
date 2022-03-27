@@ -15,7 +15,8 @@ const Detection = ({pictureOnePosition, pictureTwoPosition, detectionId, beginDe
     }
     return (
         <div>
-            <Button icon={<SearchOutlined/>} onClick={begin}>开始检测</Button>
+            {detectionId === 0 ? <Button icon={<SearchOutlined/>} onClick={begin} disabled>开始检测</Button> :
+                <Button icon={<SearchOutlined/>} onClick={begin}>开始检测</Button>}
             <Row align="middle">
                 <Col span={3} style={{marginTop: "20px"}}>
                     <Image
