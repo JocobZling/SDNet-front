@@ -55,7 +55,6 @@ const UserPassword =({password})=>{
             onFinish={onFinish}
             size={"large"}>
             <h1>修改密码</h1>
-
             <Divider />
 
 
@@ -91,7 +90,7 @@ const UserPassword =({password})=>{
                 ]}
             ><Input placeholder={"请再次输入新的密码" } type={"password"}  className={"input"}/></Form.Item>
             <br/>
-            <Form.Item><Button className={"button"}  htmlType="submit" >修改</Button></Form.Item>
+            <Form.Item><Button className={"button"} type="primary" htmlType="submit" >修改</Button></Form.Item>
         </Form>
     );
 }
