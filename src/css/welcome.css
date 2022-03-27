@@ -1,9 +1,28 @@
+.page{
+    font-family: 宋体;
+    /*background-color: #e3e3e3;*/
+
+}
+.head{
+    display: inline-block;
+}
+.title{
+    font-family: 幼圆;
+    float:left;
+
+}
+.pic{
+    width:650px;
+}
 .show{
     height:  310px;
-    color: #0000ff;
+    /*color: #0000ff;*/
+    /*width: 60%;*/
     lineHeight: 160px;
-    text-align: center;
-    background:  #364d79;
+    text-align: right;
+    float: left;
+
+    /*background:  #364d79;*/
 }
 .picture {
     height:  270px;
@@ -12,3 +31,7 @@
     text-align: center;
     background:  #364d79;
 }
+.body{
+
+}
+
