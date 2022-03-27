@@ -14,12 +14,14 @@ const layout = {
 
 const NormalLoginForm = ({login}) => {
     const onFinish = (values) => {
+        values.password = encrypt.base64encode(values.password);
+        values.email = encrypt.base64encode(values.email);
         if(values.remember){
-            var password = encrypt.base64encode(values.password);
-            var email = encrypt.base64encode(values.email);
+            // var password = encrypt.base64encode(values.password);
+            // var email = encrypt.base64encode(values.email);
             let inFifteenMinutes = new Date(new Date().getTime() + 24 * 3600 * 1000);//一天
-            cookie.save('password', password, { expires: inFifteenMinutes });
-            cookie.save('email', email, { expires: inFifteenMinutes });
+            cookie.save('password', values.password, { expires: inFifteenMinutes });
+            cookie.save('email', values.email, { expires: inFifteenMinutes });
 
         }else{
             cookie.remove('password');
@@ -48,6 +50,7 @@ const NormalLoginForm = ({login}) => {
                 password: password,
             }}
             onFinish={onFinish}
+
             size={"large"}
         >
             <Form.Item

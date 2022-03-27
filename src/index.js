@@ -7,7 +7,10 @@ import thunkMiddleware from 'redux-thunk';
 
 import {app, user, detection, history} from './ducks/index';
 import HomeContainer from "./containers/App";
-import MyLoginContainer from "./containers/MyLoginContainer";
+
+import {MyLoginContainer} from "./containers";
+import RegisterContainer from "./containers/RegisterContainer";
+
 
 const reducer = combineReducers({
     app,
@@ -26,6 +29,7 @@ ReactDOM.render(
                 path={['/index', '/profile', '/password', '/splicingDetection', '/encryptedImagAnalysis', '/faceHistory']}
                 component={HomeContainer}/>
             <Route path='/login' exact component={MyLoginContainer}/>
+            <Route path='/register' exact component={RegisterContainer}/>
         </HashRouter>
     </Provider>,
     document.getElementById('root')

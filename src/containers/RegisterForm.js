@@ -7,6 +7,7 @@ import {
 import {actions as userActions} from "../ducks/user";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {base64encode} from "../utils/base64";
 
 const formItemLayout = {
     labelCol: {
@@ -27,6 +28,9 @@ const RegistrationForm = ({register}) => {
     const [createForm] = Form.useForm();
 
     const onFinish = (values) => {
+        values.email = base64encode(values.email);
+        values.password = base64encode(values.password);
+        values.comfirm = "";
         console.log('Received values of form: ', values);
         register(values)
     };

@@ -160,3 +160,28 @@ export const updateThenHasBody = async (url, data) => {
         return {status: ex.status}
     }
 }
+
+export const postFile = async (url, data) => {
+    try {
+        const res = await fetch(url, {
+            method: HTTP_METHOD.POST,
+            credentials: 'include',
+            headers: new Headers({
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'application/json',
+                id: getHeaderFromLocalStorage('id'),
+                token: getHeaderFromLocalStorage('jwt'),
+                sessionId: getHeaderFromLocalStorage('sessionId')
+            }),
+            body: JSON.stringify(data)
+        });
+        if (!res.ok) {
+            return errHandler(res)
+        }
+        const {status} = res;
+        const body = await res.json();
+        return Object.assign({file: {status: 'done'}}, {body}, {status})
+    } catch (ex) {
+        return {status: ex.status}
+    }
+}

@@ -11,9 +11,9 @@ import FaceHistoryContainer from "./FaceHistoryContainer";
 
 
 const HomeContainer = () => {
-    // if (!window.localStorage.getItem('jwt')) {
-    //     window.location.href = '/#/login'
-    // }
+    if (!window.localStorage.getItem('jwt')) {
+        window.location.href = '/#/login'
+    }
 
     return (
         <HomePage>
@@ -23,7 +23,6 @@ const HomeContainer = () => {
                 <Route path='/profile' exact component={UserProfileContainer}/>
                 <Route path='/password' exact component={UserPasswordContainer}/>
                 <Route path='/login' exact component={MyLoginContainer}/>
-                {/*<Route path='*' exact component={WelcomeContainer}/>*/}
                 <Route path='/splicingDetection' exact component={SplicingDetectionContainer}/>
                 <Route path='/encryptedImagAnalysis' exact component={EncryptedImagAnalysisContainer}/>
                 <Route path='/faceHistory' exact component={FaceHistoryContainer}/>
