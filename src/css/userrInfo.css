@@ -1,6 +1,8 @@
 .container{
     font-size: 25px;
     text-align: center;
+    font-family: 幼圆;
+
 }
 Modify-information {
     width: 300px;
@@ -9,13 +11,14 @@ Modify-information {
 h1 {
     font-weight: bolder;
     text-align: left;
-    font-color: black;
 
 }
-
 .button{
     width: 250px;
     height: 40px;
+    background-color: white;
+    border-color: #0055aa;
+    color: #272822;
 }
 .button1{
     width: 100px;
@@ -28,6 +31,6 @@ h1 {
     font-size:16px;
     text-align: center;
 }
-label{
-    font-size:30px;
+.label{
+    font-size: 16px;
 }
