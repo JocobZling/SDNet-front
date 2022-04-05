@@ -4,7 +4,7 @@ import '../css/welcome.css'
 import pic1 from './../images/pic1.png'
 import pic2 from './../images/pic2.jpg'
 import pic3 from './../images/pic3.png'
-import welcome from './../images/welcome.jpg';
+import welcome from './../images/bj.png'
 
 const {Panel} = Collapse;
 
@@ -26,38 +26,38 @@ const zhaq = `账号安全管理：本软件支持用户更改密码，用户首
 只有当这两项检查都通过后，才修改数据库中的账号信息。`
 const grxx = `个人信息管理：用户可以更改昵称、头像、邮箱。`
 const history = `展示当前用户的历史检测记录，包括序号、调用时间、结束时间、计算结果等内容，并能对历史记录进行分页。`
-// var sectionStyle = {
-//     width: "100%",
-//     height: "400px",
-//     color: 'rgba(0,0,0,.25)',
-// // makesure here is String确保这里是一个字符串，以下是es6写法
-//     backgroundImage: `url(${welcome})`
-// };
+var sectionStyle = {
+    width: "100%",
+    height: "400px",
+    color: 'rgba(0,0,0,.25)',
+// makesure here is String确保这里是一个字符串，以下是es6写法
+    backgroundImage: `url(${welcome})`
+};
 const HomePage = () => (
 
     <Typography >
         <div className={"page"}>
-            <div className={"head"}>
+            <div className={"head"} style={sectionStyle}>
         <div className={"title"}>
 
             {/*<h1 color={"#e9ece5"}><font color={"#e9ece5"}>欢迎使用本软件</font></h1>*/}
             {/*<h5><font color={"#e9ece5"}>一款支持隐私保护的轻量级图像检测软件</font></h5>*/}
-            <h1 >欢迎使用本软件</h1>
-            <h5>一款支持隐私保护的轻量级图像检测软件</h5>
+            {/*<h1 className={"hh1"}>欢迎使用本软件</h1>*/}
+            {/*<h5>一款支持隐私保护的轻量级图像检测软件</h5>*/}
         </div>
-                <div className={"show"}>
-        <Carousel autoplay className={"pic"}>
-            <div>
-                <Image className="picture" src={pic1}/>
-            </div>
-            <div>
-                <Image className="picture" src={pic2}/>
-            </div>
-            <div>
-                <Image className="picture" src={pic3}/>
-            </div>
-        </Carousel>
-                </div>
+        {/*        <div className={"show"}>*/}
+        {/*<Carousel autoplay className={"pic"}>*/}
+        {/*    <div>*/}
+        {/*        <Image className="picture" src={pic1}/>*/}
+        {/*    </div>*/}
+        {/*    <div>*/}
+        {/*        <Image className="picture" src={pic2}/>*/}
+        {/*    </div>*/}
+        {/*    <div>*/}
+        {/*        <Image className="picture" src={pic3}/>*/}
+        {/*    </div>*/}
+        {/*</Carousel>*/}
+        {/*        </div>*/}
             </div>
         <Divider orientation="left" plain><strong>使用须知</strong></Divider>
         <Collapse className={"body"}>
