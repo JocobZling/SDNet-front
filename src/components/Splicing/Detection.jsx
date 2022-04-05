@@ -1,8 +1,8 @@
 import React from 'react';
 import {Button, Row, Steps, Col, Popover, Image, Input, Progress} from 'antd';
 import {SearchOutlined, DownloadOutlined} from '@ant-design/icons';
-import EdgeServer from '../../images/edgeServerOne.png';
-import Reaction from '../../images/reaction.png';
+import EdgeServer from '../../images/edgeServerOne1.png';
+import Reaction from '../../images/reaction1.png';
 
 const {Step} = Steps;
 
