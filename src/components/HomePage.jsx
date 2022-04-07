@@ -6,6 +6,7 @@ import pic2 from './../images/pic2.jpg'
 import pic3 from './../images/pic3.png'
 import welcome from './../images/bj.png'
 
+
 const {Panel} = Collapse;
 
 const bj = `
@@ -35,65 +36,65 @@ var sectionStyle = {
 };
 const HomePage = () => (
 
-    <Typography >
+    <Typography>
         <div className={"page"}>
             <div className={"head"} style={sectionStyle}>
-        <div className={"title"}>
+                <div className={"title"}>
 
-            {/*<h1 color={"#e9ece5"}><font color={"#e9ece5"}>欢迎使用本软件</font></h1>*/}
-            {/*<h5><font color={"#e9ece5"}>一款支持隐私保护的轻量级图像检测软件</font></h5>*/}
-            {/*<h1 className={"hh1"}>欢迎使用本软件</h1>*/}
-            {/*<h5>一款支持隐私保护的轻量级图像检测软件</h5>*/}
-        </div>
-        {/*        <div className={"show"}>*/}
-        {/*<Carousel autoplay className={"pic"}>*/}
-        {/*    <div>*/}
-        {/*        <Image className="picture" src={pic1}/>*/}
-        {/*    </div>*/}
-        {/*    <div>*/}
-        {/*        <Image className="picture" src={pic2}/>*/}
-        {/*    </div>*/}
-        {/*    <div>*/}
-        {/*        <Image className="picture" src={pic3}/>*/}
-        {/*    </div>*/}
-        {/*</Carousel>*/}
-        {/*        </div>*/}
+                    {/*<h1 color={"#e9ece5"}><font color={"#e9ece5"}>欢迎使用本软件</font></h1>*/}
+                    {/*<h5><font color={"#e9ece5"}>一款支持隐私保护的轻量级图像检测软件</font></h5>*/}
+                    {/*<h1 className={"hh1"}>欢迎使用本软件</h1>*/}
+                    {/*<h5>一款支持隐私保护的轻量级图像检测软件</h5>*/}
+                </div>
+                {/*        <div className={"show"}>*/}
+                {/*<Carousel autoplay className={"pic"}>*/}
+                {/*    <div>*/}
+                {/*        <Image className="picture" src={pic1}/>*/}
+                {/*    </div>*/}
+                {/*    <div>*/}
+                {/*        <Image className="picture" src={pic2}/>*/}
+                {/*    </div>*/}
+                {/*    <div>*/}
+                {/*        <Image className="picture" src={pic3}/>*/}
+                {/*    </div>*/}
+                {/*</Carousel>*/}
+                {/*        </div>*/}
             </div>
-        <Divider orientation="left" plain><strong>使用须知</strong></Divider>
-        <Collapse className={"body"}>
-            <Panel header="开发背景" key="1" >
-                <p>&nbsp;&nbsp;{bj}</p>
-            </Panel>
-            <Panel header="软件功能" key="2">
-                <Collapse defaultActiveKey="1">
-                    <Panel header="注册登录" key="4">
-                        <p>{login}</p>
-                        <p>{res}</p>
-                    </Panel>
-                </Collapse>
-                <Collapse defaultActiveKey="1">
-                    <Panel header="支持隐私保护的伪脸检测" key="5">
-                        <p>;&nbsp;&nbsp;{facejc}</p>
-                    </Panel>
-                </Collapse>
-                <Collapse defaultActiveKey="1">
-                    <Panel header="加密人脸分析" key="6">
-                        <p>&nbsp;&nbsp;{jm}</p>
-                    </Panel>
-                </Collapse>
-                <Collapse defaultActiveKey="1">
-                    <Panel header="用户信息管理" key="7">
-                        <p>{zhaq}</p>
-                        <p>{grxx}</p>
-                    </Panel>
-                </Collapse>
-                <Collapse defaultActiveKey="1">
-                    <Panel header="历史检测记录" key="8">
-                        <p>&nbsp;&nbsp;{history}</p>
-                    </Panel>
-                </Collapse>
-            </Panel>
-        </Collapse>
+            <Divider orientation="left" plain><strong>使用须知</strong></Divider>
+            <Collapse className={"body"}>
+                <Panel header="开发背景" key="1">
+                    <p>&nbsp;&nbsp;{bj}</p>
+                </Panel>
+                <Panel header="软件功能" key="2">
+                    <Collapse defaultActiveKey="1">
+                        <Panel header="注册登录" key="4">
+                            <p>{login}</p>
+                            <p>{res}</p>
+                        </Panel>
+                    </Collapse>
+                    <Collapse defaultActiveKey="1">
+                        <Panel header="支持隐私保护的伪脸检测" key="5">
+                            <p>;&nbsp;&nbsp;{facejc}</p>
+                        </Panel>
+                    </Collapse>
+                    <Collapse defaultActiveKey="1">
+                        <Panel header="加密人脸分析" key="6">
+                            <p>&nbsp;&nbsp;{jm}</p>
+                        </Panel>
+                    </Collapse>
+                    <Collapse defaultActiveKey="1">
+                        <Panel header="用户信息管理" key="7">
+                            <p>{zhaq}</p>
+                            <p>{grxx}</p>
+                        </Panel>
+                    </Collapse>
+                    <Collapse defaultActiveKey="1">
+                        <Panel header="历史检测记录" key="8">
+                            <p>&nbsp;&nbsp;{history}</p>
+                        </Panel>
+                    </Collapse>
+                </Panel>
+            </Collapse>
         </div>
     </Typography>
 
