@@ -23,7 +23,7 @@ const Tip = styled('img')`
      width:70px;
 `
 
-const UploadImage = ({beginDetection, getDetectionDetail, result, textAreaValue}) => {
+const UploadImage = ({beginDetection, getDetectionDetail, result, textAreaValue, current, status}) => {
     const [state, setState] = useState({
         imageUrl: '',
         pictureOnePosition: '',
@@ -106,6 +106,8 @@ const UploadImage = ({beginDetection, getDetectionDetail, result, textAreaValue}
             <Detection beginDetection={beginDetection} pictureOnePosition={pictureOnePosition}
                        pictureTwoPosition={pictureTwoPosition} detectionId={detectionId}
                        getDetectionDetail={getDetectionDetail} result={result} textAreaValue={textAreaValue}
+                       current={current}
+                       status={status}
             />
         </div>
 
