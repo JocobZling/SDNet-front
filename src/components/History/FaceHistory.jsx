@@ -42,7 +42,7 @@ const columns = [
         width: '15%',
     },
     {
-        title: '结果',
+        title: '检测结果',
         dataIndex: 'result',
         render:(text)=>{
             text = text.split(";")

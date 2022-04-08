@@ -18,7 +18,12 @@ const {TextArea} = Input;
 
 const Detection = ({pictureOnePosition, pictureTwoPosition, detectionId, beginDetection, getDetectionDetail, result, textAreaValue, current, status}) => {
 
-    if (detectionId === 0) {
+    const [state, setState] = useState({
+        flag: false
+    })
+    const {flag} = state
+
+    if (detectionId === 0 || flag === false) {
         textAreaValue = []
         result = []
         current = 0
@@ -27,6 +32,9 @@ const Detection = ({pictureOnePosition, pictureTwoPosition, detectionId, beginDe
     const begin = () => {
         beginDetection(detectionId);
         getDetectionDetail(detectionId);
+        setState({
+            flag: true
+        })
     }
 
     const saveFile = () => {
@@ -34,8 +42,8 @@ const Detection = ({pictureOnePosition, pictureTwoPosition, detectionId, beginDe
         saveAs(str, '交互详情.txt')
     }
 
-    const listItems = textAreaValue.map((item) =>
-        <li>
+    const listItems = textAreaValue.map((item, index) =>
+        <li key={index}>
             {item}
         </li>
     );

@@ -8,6 +8,7 @@ import styled from "styled-components";
 import Detection from "./Detection";
 import * as utils from "../../utils/fetch-request"
 import {detection} from "../../ducks";
+import {connect} from "react-redux";
 
 
 const action = '/api/face/encryptedImage/' + utils.getHeaderFromLocalStorage('user')
@@ -36,11 +37,14 @@ const UploadImage = ({beginDetection, getDetectionDetail, result, textAreaValue,
                 imageUrl: info.file.response.originalImagePosition,
                 pictureOnePosition: info.file.response.pictureOnePosition,
                 pictureTwoPosition: info.file.response.pictureTwoPosition,
-                detectionId: info.file.response.detectionId
+                detectionId: info.file.response.detectionId,
             })
         }
     }
     const handleBeforeUpload = info => {
+        result = []
+        textAreaValue = []
+        current = 0
         getBase64(info, imageUrl => {
             setState({
                 imageUrl: imageUrl,
@@ -114,4 +118,4 @@ const UploadImage = ({beginDetection, getDetectionDetail, result, textAreaValue,
     )
 }
 
-export default UploadImage
+export default connect(null, null)(UploadImage)

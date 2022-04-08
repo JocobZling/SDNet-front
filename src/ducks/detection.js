@@ -69,7 +69,7 @@ export const actions = {
 
 const initialState = {
     textAreaValue: [],
-    result: [0, 0, 0],
+    result: [],
     current: 0,
     status: ["process", "wait", "wait"]
 };
