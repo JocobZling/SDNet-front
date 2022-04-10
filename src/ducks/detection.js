@@ -33,14 +33,14 @@ export const actions = {
                 }
                 if (res.status === HTTP_CODE.OK && res.body.flag === "STOP") {
                     clearInterval(window.timer);
-                    dispatch(actions.setFaceDetail(res.body.textAreaValue, res.body.flag))
+                    dispatch(actions.setFaceDetail(res.body.textAreaValue, res.body.flag, res.body.originalBase64))
                     dispatch(actions.setResult(res.body.result, data))
                     dispatch(appActions.finishFetch());
                 }
             }, 120);
         }
     },
-    setFaceDetail: (textAreaValue, flag) => {
+    setFaceDetail: (textAreaValue, flag, originalPath) => {
         let current = 0;
         let status = ["process", "wait", "wait"]
         if (textAreaValue.length > 30 && flag === "go no") {
@@ -54,15 +54,23 @@ export const actions = {
         return {
             type: types.GET_TEXTAREA_VALUE,
             textAreaValue: textAreaValue,
+            originalPath: originalPath,
             current: current,
             status: status
         }
     },
     setResult: (result, data) => {
         result[2] = data
+        let r1 = result[0].split(",")[0].split("[")[1]
+        let r11 = result[0].split(",")[1].split("]")[0]
+        let r2 = result[1].split(",")[0].split("[")[1]
+        let r22 = result[1].split(",")[1].split("]")[0]
+        let flag;
+        flag = Number(r1) + Number(r2) <= Number(r11) + Number(r22);
         return {
             type: types.SET_DETECTION_RESULT,
-            result: result
+            result: result,
+            flag: flag
         }
     }
 }
@@ -71,16 +79,24 @@ const initialState = {
     textAreaValue: [],
     result: [],
     current: 0,
-    status: ["process", "wait", "wait"]
+    status: ["process", "wait", "wait"],
+    originalPath: "",
+    flag: ""
 };
 
 // reducer
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case types.GET_TEXTAREA_VALUE:
-            return {...state, textAreaValue: action.textAreaValue, current: action.current, status: action.status};
+            return {
+                ...state,
+                textAreaValue: action.textAreaValue,
+                current: action.current,
+                status: action.status,
+                originalPath: action.originalPath
+            };
         case types.SET_DETECTION_RESULT:
-            return {...state, result: action.result}
+            return {...state, result: action.result, flag: action.flag}
         default:
             return state
     }

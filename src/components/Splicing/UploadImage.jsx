@@ -7,7 +7,6 @@ import EqualIcon from '../../images/equalIcon.png'
 import styled from "styled-components";
 import Detection from "./Detection";
 import * as utils from "../../utils/fetch-request"
-import {detection} from "../../ducks";
 import {connect} from "react-redux";
 
 
@@ -24,12 +23,12 @@ const Tip = styled('img')`
      width:70px;
 `
 
-const UploadImage = ({beginDetection, getDetectionDetail, result, textAreaValue, current, status}) => {
+const UploadImage = ({beginDetection, getDetectionDetail, result, textAreaValue, current, originalPath, flag}) => {
     const [state, setState] = useState({
         imageUrl: '',
         pictureOnePosition: '',
         pictureTwoPosition: '',
-        detectionId: 0
+        detectionId: 0,
     })
     const handleCustomRequest = info => {
         if (info.file.status === 'done') {
@@ -42,9 +41,6 @@ const UploadImage = ({beginDetection, getDetectionDetail, result, textAreaValue,
         }
     }
     const handleBeforeUpload = info => {
-        result = []
-        textAreaValue = []
-        current = 0
         getBase64(info, imageUrl => {
             setState({
                 imageUrl: imageUrl,
@@ -111,11 +107,12 @@ const UploadImage = ({beginDetection, getDetectionDetail, result, textAreaValue,
                        pictureTwoPosition={pictureTwoPosition} detectionId={detectionId}
                        getDetectionDetail={getDetectionDetail} result={result} textAreaValue={textAreaValue}
                        current={current}
-                       status={status}
+                       originalPath={originalPath}
+                       flag={flag}
             />
         </div>
 
     )
 }
 
-export default connect(null, null)(UploadImage)
+export default UploadImage

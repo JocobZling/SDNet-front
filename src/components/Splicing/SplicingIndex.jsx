@@ -2,7 +2,7 @@ import React from 'react';
 import UploadImage from "./UploadImage";
 
 
-const SplicingIndex = ({beginDetection, getDetectionDetail, result, textAreaValue, current, status}) => (
+const SplicingIndex = ({beginDetection, getDetectionDetail, result, textAreaValue, current, status, originalPath, flag}) => (
     <div>
         <UploadImage beginDetection={beginDetection}
                      getDetectionDetail={getDetectionDetail}
@@ -10,6 +10,8 @@ const SplicingIndex = ({beginDetection, getDetectionDetail, result, textAreaValu
                      textAreaValue={textAreaValue}
                      current={current}
                      status={status}
+                     originalPath={originalPath}
+                     flag={flag}
 
         />
     </div>
