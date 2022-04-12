@@ -46,24 +46,26 @@ const Detection = ({beginDetection, getDetectionDetail, result, textAreaValue, c
     //     current = 0
     // }
 
-    const begin = () => {
-        const userid = window.localStorage.getItem('user');
+    const begin = async () => {
+        const userId = window.localStorage.getItem('user');
         // 当前用户所剩余的流量
-        // let res = await request.get("http://22d858i464.51mypc.cn/html/getUserLeftDataJson?userid=" + userid);
-        fetch("/payapi/getUserLeftDataJson?userid=" + userid)
-            .then(res => res.json())
-            .then(data =>{
-                console.log(data);
-            })
+        let res = await request.get("/html/getUserLeftDataJson?userid=" + userId);
+
+        console.log(res);
+
+        // fetch("/payapi/getUserLeftDataJson?userid=" + userid)
+        //     .then(res => res.json())
+        //     .then(data =>{
+        //         console.log(data);
+        //     })
 
 
         //
-
-        let detectionId = utils.getHeaderFromLocalStorage('detectionId')
-        beginDetection(detectionId);
-        getDetectionDetail(detectionId);
+        //
+        // let detectionId = utils.getHeaderFromLocalStorage('detectionId')
+        // beginDetection(detectionId);
+        // getDetectionDetail(detectionId);
     }
-
 
 
     const saveFile = () => {
@@ -94,7 +96,7 @@ const Detection = ({beginDetection, getDetectionDetail, result, textAreaValue, c
         size = size / 1024 / 1024;
         size = size.toFixed(2);
         alert(size);
-        window.open("http://22d858i464.51mypc.cn/html/calAlipayForSDNet?userid=" + userid + "&needdata=" + size );
+        window.open("http://22d858i464.51mypc.cn/html/calAlipayForSDNet?userid=" + userid + "&needdata=" + size);
     }
 
     const {display} = state
@@ -102,8 +104,10 @@ const Detection = ({beginDetection, getDetectionDetail, result, textAreaValue, c
     return (
         <div>
             {/*{detectionId === undefined ? <Button icon={<SearchOutlined/>} onClick={begin} disabled>开始检测</Button> :*/}
-            <Button icon={<AccountBookOutlined/>} style={{background:"#1890ff", color:"white"}} onClick={toBuy}>购买套餐</Button>
-            <Button icon={<AccountBookOutlined/>} style={{background:"#1890ff", color:"white", marginLeft:"20px"}} onClick={toMakeUp}>差额补足</Button>
+            <Button icon={<AccountBookOutlined/>} style={{background: "#1890ff", color: "white"}}
+                    onClick={toBuy}>购买套餐</Button>
+            <Button icon={<AccountBookOutlined/>} style={{background: "#1890ff", color: "white", marginLeft: "20px"}}
+                    onClick={toMakeUp}>差额补足</Button>
             <Button icon={<SearchOutlined/>} style={{marginLeft: "20px"}} onClick={begin}>开始检测</Button>
             {current === 2 && display ?
                 <Button icon={<DownloadOutlined/>} style={{marginLeft: "20px"}} onClick={saveFile}>
