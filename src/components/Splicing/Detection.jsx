@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Row, Steps, Col, Switch, Image, Input, Statistic} from 'antd';
+import {Button, Row, Steps, Col, Switch, Image, Input, Statistic, message} from 'antd';
 import {saveAs} from 'file-saver'
 import ReactWatermark from 'react-watermark-module'
 import {
@@ -14,8 +14,6 @@ import True from '../../images/true1.png'
 import False from '../../images/false1.png'
 import Line from '../../images/line.svg'
 import styled from "styled-components";
-import * as utils from "../../utils/fetch-request";
-import {impureFinalPropsSelectorFactory} from "react-redux/lib/connect/selectorFactory";
 import * as request from "../../utils/fetch-request";
 
 const {Step} = Steps;
@@ -50,23 +48,30 @@ const Detection = ({beginDetection, getDetectionDetail, result, textAreaValue, c
         const userId = window.localStorage.getItem('user');
         // 当前用户所剩余的流量
         let res = await request.get("/html/getUserLeftDataJson?userid=" + userId);
+        let leftdata = res.body.leftdata;
+        console.log(leftdata);
+        // 当前检测需要的余量
+        let needdata = window.localStorage.getItem('pictureSize');
+        console.log(needdata);
+        if(needdata<=leftdata){
+            res = await request.get("/html/costLeftDataJson?userid=" + userId + "&needdata=" + needdata);
+            if(res.body.costresult === "costsuccess"){
+                leftdata -= needdata;
+                leftdata.toFixed(2);
+                message.success("您本次检测共消耗" + needdata + "MB余量，已扣除，剩余" + leftdata + "MB！将开始检测");
+                // 开始检测
 
-        console.log(res);
 
-        // fetch("/payapi/getUserLeftDataJson?userid=" + userid)
-        //     .then(res => res.json())
-        //     .then(data =>{
-        //         console.log(data);
-        //     })
-
-
-        //
-        //
+            }else{
+                message.warning("扣除余额失败，请充值！");
+            }
+        }else{
+            message.warning("余量不足，请充值！");
+        }
         // let detectionId = utils.getHeaderFromLocalStorage('detectionId')
         // beginDetection(detectionId);
         // getDetectionDetail(detectionId);
     }
-
 
     const saveFile = () => {
         let str = new Blob([textAreaValue], {type: 'text/plain;charset=utf-8'})
@@ -87,15 +92,18 @@ const Detection = ({beginDetection, getDetectionDetail, result, textAreaValue, c
 
     const toBuy = () => {
         const userid = window.localStorage.getItem('user');
+
         window.open("http://22d858i464.51mypc.cn/html/triggerSDNetVipSolo?userid=" + userid, "width=1280,height=1280");
     }
 
-    const toMakeUp = () => {
+    const toMakeUp = async () => {
         const userid = window.localStorage.getItem('user');
         let size = window.localStorage.getItem('pictureSize');
-        size = size / 1024 / 1024;
+        let res = await request.get("/html/getUserLeftDataJson?userid=" + userid);
+        let leftdata = res.body.leftdata;
+        size = size * 1;
         size = size.toFixed(2);
-        alert(size);
+        size = size - leftdata + 0.02;
         window.open("http://22d858i464.51mypc.cn/html/calAlipayForSDNet?userid=" + userid + "&needdata=" + size);
     }
 

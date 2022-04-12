@@ -38,6 +38,8 @@ const UploadImage = () => {
                 pictureTwoPosition: info.file.response.pictureTwoPosition,
             })
             window.localStorage.setItem("detectionId", info.file.response.detectionId);
+            info.file.size = info.file.size / 1024 / 1024;
+            info.file.size = info.file.size.toFixed(2);
             window.localStorage.setItem("pictureSize", info.file.size)
         }
     }
