@@ -23,7 +23,7 @@ const Tip = styled('img')`
      width:70px;
 `
 
-const UploadImage = ({beginDetection, getDetectionDetail, result, textAreaValue, current, originalPath, flag}) => {
+const UploadImage = () => {
     const [state, setState] = useState({
         imageUrl: '',
         pictureOnePosition: '',
@@ -36,8 +36,8 @@ const UploadImage = ({beginDetection, getDetectionDetail, result, textAreaValue,
                 imageUrl: info.file.response.originalImagePosition,
                 pictureOnePosition: info.file.response.pictureOnePosition,
                 pictureTwoPosition: info.file.response.pictureTwoPosition,
-                detectionId: info.file.response.detectionId,
             })
+            window.localStorage.setItem("detectionId", info.file.response.detectionId);
         }
     }
     const handleBeforeUpload = info => {
@@ -53,7 +53,7 @@ const UploadImage = ({beginDetection, getDetectionDetail, result, textAreaValue,
     const text = (<span>我们会将您上传的图片进行加性秘密分解</span>);
     return (
         <div>
-            <Row justify="space-around " align="middle" gutter={[24, 24]}>
+            <Row justify="space-around " align="middle">
                 <Col span={4}>
                     <Upload
                         name="file"
@@ -102,14 +102,6 @@ const UploadImage = ({beginDetection, getDetectionDetail, result, textAreaValue,
                     />
                 </Col>
             </Row>
-            <Divider orientation="left">支持隐私保护的伪脸检测</Divider>
-            <Detection beginDetection={beginDetection} pictureOnePosition={pictureOnePosition}
-                       pictureTwoPosition={pictureTwoPosition} detectionId={detectionId}
-                       getDetectionDetail={getDetectionDetail} result={result} textAreaValue={textAreaValue}
-                       current={current}
-                       originalPath={originalPath}
-                       flag={flag}
-            />
         </div>
 
     )

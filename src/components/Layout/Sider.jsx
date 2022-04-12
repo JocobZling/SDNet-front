@@ -6,7 +6,8 @@ import {
     UserOutlined,
     BarChartOutlined,
     MonitorOutlined,
-    UnorderedListOutlined
+    UnorderedListOutlined,
+    LineChartOutlined
 } from '@ant-design/icons';
 import '../../css/index.css'
 
@@ -18,10 +19,13 @@ const LeftMenu = () => (
             <Link to={'/'}>欢迎</Link>
         </Menu.Item>
         <Menu.Item key="/splicingDetection" icon={<BarChartOutlined/>}>
-            <Link to={'/splicingDetection'}>支持隐私保护的伪脸检测</Link>
+            <Link to={'/splicingDetection'}>支持隐私保护的肖像取证</Link>
+        </Menu.Item>
+        <Menu.Item key="/videoDetection" icon={<LineChartOutlined/>}>
+            <Link to={'/videoDetection'}>支持隐私保护的伪脸检测</Link>
         </Menu.Item>
         <Menu.Item key="/encryptedImagAnalysis" icon={<MonitorOutlined/>}>
-            <Link to={'/encryptedImagAnalysis'}>加密人脸分析</Link>
+            <Link to={'/encryptedImagAnalysis'}>加密算法可视化分析</Link>
         </Menu.Item>
         <Menu.Item key="/faceHistory" icon={<UnorderedListOutlined/>}>
             <Link to={'/faceHistory'}>历史检测记录</Link>
