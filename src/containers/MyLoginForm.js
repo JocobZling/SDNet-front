@@ -84,8 +84,8 @@ const NormalLoginForm = ({login}) => {
                     <Checkbox>记住我</Checkbox>
                 </Form.Item>
 
-                <a className="login-form-forgot" href="">
-                    忘记密码
+                <a className="login-form-forgot" href="http://22d858i464.51mypc.cn/html/qqAuth">
+                    使用QQ登录
                 </a>
             </Form.Item>
 

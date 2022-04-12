@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Form,
     Input,
@@ -7,7 +7,8 @@ import {
 import {actions as userActions} from "../ducks/user";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {base64encode} from "../utils/base64";
+import {base64decode, base64encode} from "../utils/base64";
+import Base64 from "base-64";
 
 const formItemLayout = {
     labelCol: {
@@ -24,12 +25,31 @@ const tailFormItemLayout = {
 };
 
 
-const RegistrationForm = ({register}) => {
+const RegistrationForm = ({register, testregist}) => {
+    useEffect(() => {
+        const query = window.location.href;
+        const arr = query.split('&');
+        var email = arr[0];
+        let index = email.indexOf('=');
+        email = email.substring(index + 1, email.length);
+        email = Base64.encode(email);
+        var password = arr[2];
+        index = password.indexOf('=');
+        password = password.substring(index + 1, password.length);
+
+        let data = {
+            'email': email,
+            'password': password,
+        };
+        testregist(data);
+
+    }, [])
+
     const [createForm] = Form.useForm();
 
     const onFinish = (values) => {
-        values.email = base64encode(values.email);
-        values.password = base64encode(values.password);
+        values.email = Base64.encode(values.email);
+        values.password = Base64.encode(values.password);
         values.comfirm = "";
         console.log('Received values of form: ', values);
         register(values)
@@ -41,6 +61,17 @@ const RegistrationForm = ({register}) => {
 
     const [autoCompleteResult, setAutoCompleteResult] = useState([]);
 
+
+    const query = window.location.href;
+    const arr = query.split('&');
+    var email = arr[0];
+    let index = email.indexOf('=');
+    email = email.substring(index + 1, email.length);
+    var password = arr[2];
+    index = password.indexOf('=');
+    password = password.substring(index + 1, password.length);
+    password = Base64.decode(password);
+
     return (
         <Form
             {...formItemLayout}
@@ -49,6 +80,11 @@ const RegistrationForm = ({register}) => {
             onFinish={onFinish}
             scrollToFirstError
             size={"large"}
+            initialValues={{
+                email: email,
+                password: password,
+                confirm: password,
+            }}
         >
             <Form.Item
                 name="name"
@@ -115,7 +151,6 @@ const RegistrationForm = ({register}) => {
                             if (!value || getFieldValue('password') === value) {
                                 return Promise.resolve();
                             }
-
                             return Promise.reject(new Error('两次输入的密码不匹配！'));
                         },
                     }),
@@ -139,7 +174,8 @@ const RegistrationForm = ({register}) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    register:(data)=>dispatch(userActions.register(data))
+    register:(data)=>dispatch(userActions.register(data)),
+    testregist:(data)=>dispatch(userActions.testregist(data))
 });
 
 export default connect(null, mapDispatchToProps)(withRouter(RegistrationForm))
