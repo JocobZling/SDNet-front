@@ -38,6 +38,7 @@ const UploadImage = () => {
                 pictureTwoPosition: info.file.response.pictureTwoPosition,
             })
             window.localStorage.setItem("detectionId", info.file.response.detectionId);
+            window.localStorage.setItem("pictureSize", info.file.size)
         }
     }
     const handleBeforeUpload = info => {
@@ -49,7 +50,7 @@ const UploadImage = () => {
         return true;
     }
 
-    const {imageUrl, pictureOnePosition, pictureTwoPosition, detectionId} = state;
+    const {imageUrl, pictureOnePosition, pictureTwoPosition, detectionId, pictureSize} = state;
     const text = (<span>我们会将您上传的图片进行加性秘密分解</span>);
     return (
         <div>
