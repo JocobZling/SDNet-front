@@ -5,9 +5,11 @@ import Form from "antd/es/form";
 import {actions as userActions} from "../../ducks/user";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import Base64 from "base-64";
 
 const UserProfile = ({profile}) => {
     const onFinish = (values) => {
+        values.email = Base64.encode(values.email);
         console.log('Success:', values);
         console.log('Received values of form: ', values);
         profile(values)

@@ -15,6 +15,7 @@ import False from '../../images/false1.png'
 import Line from '../../images/line.svg'
 import styled from "styled-components";
 import * as request from "../../utils/fetch-request";
+import * as utils from "../../utils/fetch-request";
 
 const {Step} = Steps;
 
@@ -45,32 +46,32 @@ const Detection = ({beginDetection, getDetectionDetail, result, textAreaValue, c
     // }
 
     const begin = async () => {
-        const userId = window.localStorage.getItem('user');
-        // 当前用户所剩余的流量
-        let res = await request.get("/html/getUserLeftDataJson?userid=" + userId);
-        let leftdata = res.body.leftdata;
-        console.log(leftdata);
-        // 当前检测需要的余量
-        let needdata = window.localStorage.getItem('pictureSize');
-        console.log(needdata);
-        if(needdata<=leftdata){
-            res = await request.get("/html/costLeftDataJson?userid=" + userId + "&needdata=" + needdata);
-            if(res.body.costresult === "costsuccess"){
-                leftdata -= needdata;
-                leftdata.toFixed(2);
-                message.success("您本次检测共消耗" + needdata + "MB余量，已扣除，剩余" + leftdata + "MB！将开始检测");
-                // 开始检测
-
-
-            }else{
-                message.warning("扣除余额失败，请充值！");
-            }
-        }else{
-            message.warning("余量不足，请充值！");
-        }
-        // let detectionId = utils.getHeaderFromLocalStorage('detectionId')
-        // beginDetection(detectionId);
-        // getDetectionDetail(detectionId);
+        // const userId = window.localStorage.getItem('user');
+        // // 当前用户所剩余的流量
+        // let res = await request.get("/html/getUserLeftDataJson?userid=" + userId);
+        // let leftdata = res.body.leftdata;
+        // console.log(leftdata);
+        // // 当前检测需要的余量
+        // let needdata = window.localStorage.getItem('pictureSize');
+        // console.log(needdata);
+        // if(needdata<=leftdata){
+        //     res = await request.get("/html/costLeftDataJson?userid=" + userId + "&needdata=" + needdata);
+        //     if(res.body.costresult === "costsuccess"){
+        //         leftdata -= needdata;
+        //         leftdata.toFixed(2);
+        //         message.success("您本次检测共消耗" + needdata + "MB余量，已扣除，剩余" + leftdata + "MB！将开始检测");
+        //         // 开始检测
+        //
+        //
+        //     }else{
+        //         message.warning("扣除余额失败，请充值！");
+        //     }
+        // }else{
+        //     message.warning("余量不足，请充值！");
+        // }
+        let detectionId = utils.getHeaderFromLocalStorage('detectionId')
+        beginDetection(detectionId);
+        getDetectionDetail(detectionId);
     }
 
     const saveFile = () => {
