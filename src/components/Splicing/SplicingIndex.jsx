@@ -9,12 +9,11 @@ const SplicingIndex = ({beginDetection, getDetectionDetail, result, textAreaValu
         <UploadImage/>
         <Divider orientation="left" style={{fontWeight: 700}}>支持隐私保护的肖像图片检测</Divider>
         <Detection beginDetection={beginDetection}
-            // pictureOnePosition={pictureOnePosition}
-            // pictureTwoPosition={pictureTwoPosition}
                    getDetectionDetail={getDetectionDetail} result={result} textAreaValue={textAreaValue}
                    current={current}
                    originalPath={originalPath}
                    flag={flag}
+                   type={"image"}
         />
     </div>
 )

@@ -24,8 +24,8 @@ const mapStateToProps = ({detection}) => ({
 
 
 const mapDispatchToProps = dispatch => ({
-    beginDetection: (data) => dispatch(detectionActions.beginDetection(data)),
-    getDetectionDetail: (data) => dispatch(detectionActions.getDetectionDetail(data))
+    beginDetection: (data, type) => dispatch(detectionActions.beginDetection(data, type)),
+    getDetectionDetail: (data, type) => dispatch(detectionActions.getDetectionDetail(data, type))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SplicingDetectionContainer);

@@ -11,22 +11,22 @@ export const types = {
 };
 
 export const actions = {
-    beginDetection: (data) => {
+    beginDetection: (data, type) => {
         return dispatch => {
             (async () => {
                 dispatch(appActions.startFetch());
-                const res = await request.get(`./api/face/faceDetection/${data}/1`);
+                const res = await request.get(`./api/face/faceDetection/${data}/${type}`);
                 if (res.status === HTTP_CODE.OK) {
                     dispatch(appActions.finishFetch());
                 }
             })();
         }
     },
-    getDetectionDetail: (data) => {
+    getDetectionDetail: (data, type) => {
         return dispatch => {
             window.timer = setInterval(async () => {
                 dispatch(appActions.startFetch());
-                const res = await request.get(`./api/face/detectionDetail/${data}`);
+                const res = await request.get(`./api/face/detectionDetail/${data}/${type}`);
                 if (res.status === HTTP_CODE.OK && res.body.flag === "go on" && res.body.textAreaValue.length) {
                     dispatch(actions.setFaceDetail(res.body.textAreaValue, res.body.flag))
                     dispatch(appActions.finishFetch());

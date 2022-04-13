@@ -43,6 +43,10 @@ const VideoUpload = () => {
                 loading: false,
                 secretImage: SecretImage
             })
+            window.localStorage.setItem("detectionId", info.file.response.detectionId);
+            info.file.size = info.file.size / 1024 / 1024;
+            info.file.size = info.file.size.toFixed(2);
+            window.localStorage.setItem("videoSize", info.file.size)
         }
     }
     const text = (<span>我们会将您上传的视频进行加性秘密分解</span>);

@@ -4,11 +4,18 @@ import Detection from "./Detection";
 import VideoUpload from "./VideoUpload";
 
 
-const VideoDetectionIndex = () => (
+const VideoDetectionIndex = ({beginDetection, getDetectionDetail, result, textAreaValue, current, status, originalPath, flag}) => (
     <div>
         <VideoUpload/>
         <Divider orientation="left" style={{fontWeight: 700}}>支持隐私保护的视频检测</Divider>
-        {/*<Detection/>*/}
+        <Detection
+            beginDetection={beginDetection} getDetectionDetail={getDetectionDetail} result={result}
+            textAreaValue={textAreaValue}
+            current={current}
+            originalPath={originalPath}
+            flag={flag}
+            type={"video"}
+        />
     </div>
 )
 
