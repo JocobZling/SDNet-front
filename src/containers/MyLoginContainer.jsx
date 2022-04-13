@@ -3,6 +3,7 @@ import React from 'react';
 import NormalLoginForm from "./MyLoginForm";
 import Header from "../constant/Header";
 import {Col, Row} from "antd";
+import back from './../images/back.jpg'
 
 const FormContainer = styled('div')`
     background:#ffffff;
@@ -12,6 +13,14 @@ const FormContainer = styled('div')`
     padding-bottom:2vh;
 `
 
+const backstyle = {
+    width: "100%",
+    background: `url(${back})`,
+    height:'88vh',
+    backgroundRepeat: `no-repeat`,
+    backgroundSize: `cover`,
+}
+
 const MyLoginContainer = ()  => (
     <Row>
         <Col span={24}>
@@ -20,7 +29,7 @@ const MyLoginContainer = ()  => (
                     <Header/>
                 </Col>
             </Row>
-            <Row align={"middle"} style={{height:'88vh', background:'#299fe3'}}>
+            <Row align={"middle"} style={backstyle} >
                 <Col span={24} style={{verticalAlign:'center'}}>
                     <Row>
                         <Col span={6} offset={16}>

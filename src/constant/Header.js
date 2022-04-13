@@ -31,11 +31,11 @@ const Header = () => (
         </Col>
         <Col>
             <TitleContainer>
-                图像检测软件
+                支持隐私保护的肖像取证系统
             </TitleContainer>
             <br/>
             <DescriptionContainer>
-                一款支持隐私保护的轻量级图像检测软件
+                数字取证教育部工程研究中心
             </DescriptionContainer>
         </Col>
     </Row>

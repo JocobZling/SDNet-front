@@ -7,7 +7,8 @@ import {
 import {actions as userActions} from "../ducks/user";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {base64decode, base64encode} from "../utils/base64";
+import "./../css/form.css"
+
 import Base64 from "base-64";
 
 const formItemLayout = {
@@ -17,6 +18,7 @@ const formItemLayout = {
     wrapperCol: {
         span: 10
     },
+
 };
 const tailFormItemLayout = {
     wrapperCol: {
@@ -27,22 +29,29 @@ const tailFormItemLayout = {
 
 const RegistrationForm = ({register, testregist}) => {
     useEffect(() => {
+
         const query = window.location.href;
         const arr = query.split('&');
-        var email = arr[0];
-        let index = email.indexOf('=');
+        console.log(arr);
+        debugger;
+        let email = arr[0];
+        let index;
+        if(email != null){
+            index = email.indexOf('=');
+        }
+
         email = email.substring(index + 1, email.length);
         email = Base64.encode(email);
-        var password = arr[2];
-        index = password.indexOf('=');
-        password = password.substring(index + 1, password.length);
-
-        let data = {
-            'email': email,
-            'password': password,
-        };
-        testregist(data);
-
+        let password = arr[2];
+        if(password != null){
+            index = password.indexOf('=');
+            password = password.substring(index + 1, password.length);
+            let data = {
+                'email': email,
+                'password': password,
+            };
+            testregist(data);
+        }
     }, [])
 
     const [createForm] = Form.useForm();
@@ -65,12 +74,23 @@ const RegistrationForm = ({register, testregist}) => {
     const query = window.location.href;
     const arr = query.split('&');
     var email = arr[0];
-    let index = email.indexOf('=');
-    email = email.substring(index + 1, email.length);
-    var password = arr[2];
-    index = password.indexOf('=');
-    password = password.substring(index + 1, password.length);
-    password = Base64.decode(password);
+    let index;
+    index = email.indexOf('=');
+    // alert(index);
+    if(index != -1){
+        email = email.substring(index + 1, email.length);
+    }else {
+        email = null;
+    }
+
+
+    let password = arr[2];
+    if(password != null){
+        index = password.indexOf('=');
+        password = password.substring(index + 1, password.length);
+        password = Base64.decode(password);
+    }
+
 
     return (
         <Form
