@@ -1,16 +1,12 @@
 import React from 'react';
-import {Typography, Carousel, Divider, Collapse, Image} from 'antd';
+import {Typography, Divider, Collapse, Row, Col} from 'antd';
 import '../css/welcome.css'
-import pic1 from './../images/pic1.png'
-import pic2 from './../images/pic2.jpg'
-import pic3 from './../images/pic3.png'
-import welcome from './../images/bj.png'
-
+import Back from '../images/bj.png'
 
 const {Panel} = Collapse;
 
 const bj1 = `
-  随着深度学习的发展，基于生成对抗网络(GAN)[1]的DeepFake技术不断更新，各种换脸工具不断涌现，如FaceApp、FaceSwap、FaceForge、PhotoSpeak、ZAO、DeepFaceLab、DeepNude等。
+  随着深度学习的发展，基于生成对抗网络(GAN)的DeepFake技术不断更新，各种换脸工具不断涌现，如FaceApp、FaceSwap、FaceForge、PhotoSpeak、ZAO、DeepFaceLab、DeepNude等。
   这些工具在给大众带来娱乐消遣的同时，也给犯罪分子不法活动带来了契机，个人的隐私权、肖像权以及财产权更易受到侵犯，甚至对社会的和谐稳定造成威胁。
 `;
 const bj2 = `
@@ -36,39 +32,15 @@ const zhaq = `账号安全管理：本软件支持用户更改密码，用户首
 只有当这两项检查都通过后，才修改数据库中的账号信息。`
 const grxx = `个人信息管理：用户可以更改昵称、头像、邮箱。`
 const history = `展示当前用户的历史检测记录，包括序号、调用时间、结束时间、计算结果等内容，并能对历史记录进行分页。`
-var sectionStyle = {
-    width: "100%",
-    height: "400px",
-    color: 'rgba(0,0,0,.25)',
-// makesure here is String确保这里是一个字符串，以下是es6写法
-    backgroundImage: `url(${welcome})`
-};
-const HomePage = () => (
 
+const HomePage = () => (
     <Typography>
         <div className={"page"}>
-            <div className={"head"} style={sectionStyle}>
-                <div className={"title"}>
-
-                    {/*<h1 color={"#e9ece5"}><font color={"#e9ece5"}>欢迎使用本软件</font></h1>*/}
-                    {/*<h5><font color={"#e9ece5"}>一款支持隐私保护的轻量级图像检测软件</font></h5>*/}
-                    {/*<h1 className={"hh1"}>欢迎使用本软件</h1>*/}
-                    {/*<h5>一款支持隐私保护的轻量级图像检测软件</h5>*/}
-                </div>
-                {/*        <div className={"show"}>*/}
-                {/*<Carousel autoplay className={"pic"}>*/}
-                {/*    <div>*/}
-                {/*        <Image className="picture" src={pic1}/>*/}
-                {/*    </div>*/}
-                {/*    <div>*/}
-                {/*        <Image className="picture" src={pic2}/>*/}
-                {/*    </div>*/}
-                {/*    <div>*/}
-                {/*        <Image className="picture" src={pic3}/>*/}
-                {/*    </div>*/}
-                {/*</Carousel>*/}
-                {/*        </div>*/}
-            </div>
+            <Row justify={'center'} align={'middle'}>
+                <Col className={"head"} span={23}>
+                    <img src={Back} width='100%' alt={'back'}/>
+                </Col>
+            </Row>
             <Divider orientation="left" plain><strong>使用须知</strong></Divider>
             <Collapse className={"body"}>
                 <Panel header="开发背景" key="1">

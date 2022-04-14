@@ -1,21 +1,21 @@
-.page{
+.page {
     font-family: 宋体;
     /*background-color: #e3e3e3;*/
 
 }
-.head{
-    display: inline-block;
-}
-.title{
+
+
+.title {
     font-family: 幼圆;
-    float:left;
+    float: left;
 
 }
-.pic{
-    width:650px;
+.pic {
+    width: 650px;
 }
-.show{
-    height:  310px;
+
+.show {
+    height: 310px;
     /*color: #0000ff;*/
     /*width: 60%;*/
     lineHeight: 160px;
@@ -24,14 +24,16 @@
 
     /*background:  #364d79;*/
 }
+
 .picture {
-    height:  270px;
+    height: 270px;
     color: #0000ff;
     margin-top: 4px;
     text-align: center;
-    background:  #364d79;
+    background: #364d79;
 }
-.body{
+
+.body {
 
 }
 

@@ -56,6 +56,7 @@ export const actions = {
                 const res = await request.postWithBody('./api/users/register', data);
                 if (res.status === HTTP_CODE.OK) {
                     message.success("您已注册成功！");
+                    debugger;
                     window.localStorage.setItem("jwt", res.body.token);
                     window.localStorage.setItem("user", res.body.user.id);
                     window.location.href = "./"
