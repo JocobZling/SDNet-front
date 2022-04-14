@@ -9,14 +9,23 @@ import welcome from './../images/bj.png'
 
 const {Panel} = Collapse;
 
-const bj = `
-  计算机视觉和图像处理技术的快速发展，使得人们已经能够在各式软件上轻松生成各种各样的伪脸照片。
-  伪脸生成技术的发展给一些不法分子提供了诈骗、造假活动的契机,不法分子完全可以在社交网站上使用虚假的个人图片来进行欺骗。
-  社会中出现的很多利用虚假人脸进行诈骗的例子足以证明：个人隐私和财产安全受到严重威胁。
-  相比于虹膜、指纹等其他生物识别信息，人脸具有无意识和非接触性的特点，
-可以远距离发挥作用，且能在长时间、大规模里积累，具有很强的侵入性。当人脸信息和其他隐私信息产生关联时，一旦出现泄露，危害性和危险性不言而喻。
-综上所述，开发一个鲁棒的、具有隐私保护特性的伪脸检测系统，不仅有利于打击利用伪脸生成技术进行非法犯罪的不法分子，更有利于保护用户在检测过程中核心隐私安全。
+const bj1 = `
+  随着深度学习的发展，基于生成对抗网络(GAN)[1]的DeepFake技术不断更新，各种换脸工具不断涌现，如FaceApp、FaceSwap、FaceForge、PhotoSpeak、ZAO、DeepFaceLab、DeepNude等。
+  这些工具在给大众带来娱乐消遣的同时，也给犯罪分子不法活动带来了契机，个人的隐私权、肖像权以及财产权更易受到侵犯，甚至对社会的和谐稳定造成威胁。
 `;
+const bj2 = `
+  因此，国家对肖像权保护及其重视。在立法层面对深度伪造技术滥用问题进行了前瞻性的回应，其中《中华人民共和国民法典》第一千零一十九条第一款规定：“任何组织或者个人不得以丑化、
+  污损，或者利用信息技术手段伪造等方式侵害他人的肖像权。”；国家互联网信息办公室为了规范互联网信息服务深度合成活动专门起草了《互联网信息服务深度合成管理规定（征求意见稿）》。
+`
+const bj3 = `
+  南京信息工程大学数字取证教育部工程研究中心是经教育部批准成立的全国首个数字取证平台。该中心现有研发人员200余人，在多媒体内容取证、新型电子数据取证、
+  区块链取证等领域成果显著，获批国家级科研项目100余项，获得100多项国家发明专利，获得省部级及以上科技奖励10余项。
+`
+const bj4 = `
+  依托数字取证平台，我们研发了支持隐私保护的肖像取证系统，开创性地实现了在不泄露用户隐私的前提下对上传图片或视频中的肖像进行专业性、权威性的取证。
+`
+
+
 const login = `用户账号登录：本软件将用户输入的邮箱和密码与数据库中已注册的账号密码比较，若匹配，则开放软件所有功能。`
 const res = `用户账号注册：用户需输入用户名、邮箱、密码、确认密码进行注册，当输入内容符合各项要求时，注册成功。`
 const facejc = `用户上传单张图片，显示该图片加性分解结果。点击开始检测按钮，
@@ -63,7 +72,10 @@ const HomePage = () => (
             <Divider orientation="left" plain><strong>使用须知</strong></Divider>
             <Collapse className={"body"}>
                 <Panel header="开发背景" key="1">
-                    <p>&nbsp;&nbsp;{bj}</p>
+                    <p>&nbsp;&nbsp;{bj1}</p>
+                    <p>&nbsp;&nbsp;{bj2}</p>
+                    <p>&nbsp;&nbsp;{bj3}</p>
+                    <p>&nbsp;&nbsp;{bj4}</p>
                 </Panel>
                 <Panel header="软件功能" key="2">
                     <Collapse defaultActiveKey="1">
@@ -73,17 +85,17 @@ const HomePage = () => (
                         </Panel>
                     </Collapse>
                     <Collapse defaultActiveKey="1">
-                        <Panel header="支持隐私保护的伪脸检测" key="5">
-                            <p>;&nbsp;&nbsp;{facejc}</p>
+                        <Panel header="支持隐私保护的肖像取证" key="5">
+                            <p>&nbsp;&nbsp;{facejc}</p>
                         </Panel>
                     </Collapse>
                     <Collapse defaultActiveKey="1">
-                        <Panel header="加密人脸分析" key="6">
+                        <Panel header="加密算法可视化分析" key="6">
                             <p>&nbsp;&nbsp;{jm}</p>
                         </Panel>
                     </Collapse>
                     <Collapse defaultActiveKey="1">
-                        <Panel header="用户信息管理" key="7">
+                        <Panel header="个人账号管理" key="7">
                             <p>{zhaq}</p>
                             <p>{grxx}</p>
                         </Panel>
