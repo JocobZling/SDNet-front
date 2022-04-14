@@ -8,6 +8,7 @@ import EqualIcon from "../../images/equalIcon.png";
 import AddIcon from "../../images/addIcon.png";
 import styled from "styled-components";
 import * as utils from "../../utils/fetch-request";
+import ReactPlayer from 'react-player'
 
 const action = '/api/face/encryptedVideo/' + utils.getHeaderFromLocalStorage('user')
 
@@ -39,7 +40,7 @@ const VideoUpload = () => {
         }
         if (info.file.status === 'done') {
             setState({
-                videoPosition: info.file.response.position,
+                videoPosition: info.file.response.originalImagePosition,
                 loading: false,
                 secretImage: SecretImage
             })
@@ -62,6 +63,7 @@ const VideoUpload = () => {
             />
         </div>
     );
+    console.log(videoPosition)
     return (
         <div>
             <Row justify="space-around " align="middle">
@@ -82,9 +84,10 @@ const VideoUpload = () => {
                     </Tooltip>
                 </Col>
                 <Col>
-                    {videoPosition !== '' ?
+                    {videoPosition !== '' && videoPosition !== undefined ?
                         <video src={videoPosition} width="280" height="200" controls>
                         </video>
+                        // <ReactPlayer url={videoPosition}/>
                         : uploadButton}
                 </Col>
                 <Col>

@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import cookie from "react-cookies";
 import * as encrypt from '../utils/base64'
+import {Link} from 'react-router-dom';
 
 const layout = {
     wrapperCol: {span:30},
@@ -93,7 +94,7 @@ const NormalLoginForm = ({login}) => {
                 <Button type="primary" htmlType="submit" className="login-form-button">
                     登录
                 </Button>
-                或 <a href="http://localhost:3000/#/register">立即注册！</a>
+                或 <Link to={'/register'}>立即注册</Link>
             </Form.Item>
         </Form>
     );

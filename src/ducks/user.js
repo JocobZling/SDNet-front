@@ -27,7 +27,7 @@ export const actions = {
                     window.localStorage.setItem("jwt", res.body.token);
                     window.localStorage.setItem("user", res.body.user.id);
                     message.success("登录成功！");
-                    window.location.href = '/';
+                    window.location.href = './';
                     dispatch(appActions.finishFetch());
                 }
             })();
@@ -42,7 +42,7 @@ export const actions = {
                     window.localStorage.setItem("jwt", res.body.token);
                     window.localStorage.setItem("user", res.body.user.id);
                     message.success("登录成功！");
-                    window.location.href = '/';
+                    window.location.href = './';
                     dispatch(appActions.finishFetch());
                 }
             })();
@@ -58,11 +58,11 @@ export const actions = {
                     message.success("您已注册成功！");
                     window.localStorage.setItem("jwt", res.body.token);
                     window.localStorage.setItem("user", res.body.user.id);
-                    window.location.href = "/"
+                    window.location.href = "./"
                     dispatch(appActions.finishFetch());
                 } else {
                     message.warn("此邮箱已注册，请登录！");
-                    window.location.href = "http://localhost:3000/#/login"
+                    window.location.href = "./login"
                     dispatch(appActions.finishFetch());
                 }
             })();
