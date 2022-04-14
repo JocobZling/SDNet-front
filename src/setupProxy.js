@@ -6,7 +6,7 @@ module.exports = function (app) {
             changeOrigin: true,
         }),
         createProxyMiddleware('/api', {
-            target: "http://chenlab2.vip.aeert.com",
+            target: "http://22d858i464.51mypc.cn:14791",
             changeOrigin: true,
         }),
 

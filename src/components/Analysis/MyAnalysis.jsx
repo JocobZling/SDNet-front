@@ -6,7 +6,7 @@ import styled from "styled-components";
 import AnalysisImage from "./AnalysisImage";
 
 //const action = '/api/photo/upload/' + utils.getHeaderFromLocalStorage('id')
-const action = '/api/analysis/hist/'
+const action = '/api/analysis/hist'
 
 function getBase64(img, callback) {
     const reader = new FileReader();

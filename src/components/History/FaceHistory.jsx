@@ -54,7 +54,10 @@ const columns = [
         title: '检测结果',
         dataIndex: 'result',
         render: (text) => {
-            text = text || ";".split(";")
+            if (text === null) {
+                text = "[];[]"
+            }
+            text = text.split(";")
             return <div>
                 结果1：{text[0]}<br/>
                 结果2：{text[1]}

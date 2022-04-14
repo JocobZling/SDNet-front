@@ -7,7 +7,8 @@ import HTTP_CODE from '../utils/http-code';
 export const types = {
     BEGIN_DETECTION: 'detection/BEGIN_DETECTION',
     GET_TEXTAREA_VALUE: 'detection/GET_TEXTAREA_VALUE',
-    SET_DETECTION_RESULT: 'detection/SET_DETECTION_RESULT'
+    SET_DETECTION_RESULT: 'detection/SET_DETECTION_RESULT',
+    CLEAR_STATE: 'detection/CLEAR_STATE'
 };
 
 export const actions = {
@@ -97,6 +98,8 @@ export default function reducer(state = initialState, action) {
             };
         case types.SET_DETECTION_RESULT:
             return {...state, result: action.result, flag: action.flag}
+        case types.CLEAR_STATE:
+            return {...state}
         default:
             return state
     }

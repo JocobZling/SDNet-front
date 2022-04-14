@@ -31,12 +31,12 @@ const VideoUpload = () => {
     })
 
     const handleCustomRequest = info => {
-        if (info.file.status === 'uploading') {
-            setState({
-                loading: true
-            });
-            return;
-        }
+        // if (info.file.status === 'uploading') {
+        //     setState({
+        //         loading: true
+        //     });
+        //     return;
+        // }
         if (info.file.status === 'done') {
             setState({
                 videoPosition: info.file.response.originalImagePosition,
