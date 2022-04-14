@@ -57,7 +57,7 @@ const Detection = ({beginDetection, getDetectionDetail, result, textAreaValue, c
 
             if (res.body.costresult === "costsuccess") {
                 leftdata -= needdata;
-                leftdata.toFixed(2);
+                leftdata = leftdata.toFixed(2);
                 message.success("您本次检测共消耗" + needdata + "MB余量，已扣除，剩余" + leftdata + "MB！将开始检测");
                 // 开始检测
                 let detectionId = request.getHeaderFromLocalStorage('detectionId')

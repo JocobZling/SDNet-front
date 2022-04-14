@@ -55,8 +55,10 @@ export const actions = {
                 //  debugger;
                 const res = await request.postWithBody('./api/users/register', data);
                 if (res.status === HTTP_CODE.OK) {
-                    message.success("您已注册成功，请登录！");
-                    window.location.href = "http://localhost:3000/#/login"
+                    message.success("您已注册成功！");
+                    window.localStorage.setItem("jwt", res.body.token);
+                    window.localStorage.setItem("user", res.body.user.id);
+                    window.location.href = "/"
                     dispatch(appActions.finishFetch());
                 } else {
                     message.warn("此邮箱已注册，请登录！");
