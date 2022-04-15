@@ -7,14 +7,22 @@ import {
     BarChartOutlined,
     MonitorOutlined,
     UnorderedListOutlined,
-    LineChartOutlined
+    LineChartOutlined,
+    UnlockOutlined
 } from '@ant-design/icons';
 import '../../css/index.css'
 
 const {SubMenu} = Menu;
 
-const LeftMenu = () => (
-    <Menu theme="dark" mode="inline" selectedKeys={`/${window.location.hash.split('#')[1].split('/')[1]}`}>
+const LeftMenu = () => {
+    const loginOut = () => {
+        window.localStorage.removeItem('jwt')
+        window.localStorage.removeItem('user')
+        window.localStorage.removeItem('videoSize')
+        window.localStorage.removeItem('pictureSize')
+        window.localStorage.removeItem('detectionId')
+    }
+    return (<Menu theme="dark" mode="inline" selectedKeys={`/${window.location.hash.split('#')[1].split('/')[1]}`}>
         <Menu.Item key="/" icon={<HeartOutlined/>}>
             <Link to={'/'}>欢迎</Link>
         </Menu.Item>
@@ -38,7 +46,10 @@ const LeftMenu = () => (
                 <Link to={'/password'}>帐号安全管理</Link>
             </Menu.Item>
         </SubMenu>
-    </Menu>
-)
+        <Menu.Item key="/loginOut" icon={<UnlockOutlined/>} onClick={loginOut}>
+            <Link to={'/login'}>登出系统</Link>
+        </Menu.Item>
+    </Menu>)
+}
 
 export default LeftMenu

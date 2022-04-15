@@ -37,6 +37,7 @@ export const actions = {
                     dispatch(actions.setFaceDetail(res.body.textAreaValue, res.body.flag, res.body.originalBase64))
                     dispatch(actions.setResult(res.body.result, data))
                     dispatch(appActions.finishFetch());
+                    window.localStorage.removeItem('detectionId')
                 }
             }, 120);
         }
@@ -73,6 +74,16 @@ export const actions = {
             result: result,
             flag: flag
         }
+    },
+    setClear: () => {
+        return {
+            textAreaValue: [],
+            result: [],
+            current: 0,
+            originalPath: "",
+            flag: "",
+            type: types.CLEAR_STATE
+        }
     }
 }
 
@@ -99,7 +110,14 @@ export default function reducer(state = initialState, action) {
         case types.SET_DETECTION_RESULT:
             return {...state, result: action.result, flag: action.flag}
         case types.CLEAR_STATE:
-            return {...state}
+            return {
+                ...state,
+                result: action.result,
+                textAreaValue: action.textAreaValue,
+                originalPath: action.originalPath,
+                flag: action.flag,
+                current: action.current
+            }
         default:
             return state
     }
