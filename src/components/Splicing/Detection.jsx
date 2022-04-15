@@ -109,12 +109,22 @@ const Detection = ({beginDetection, getDetectionDetail, result, textAreaValue, c
 
     return (
         <div>
-            {/*{detectionId === undefined ? <Button icon={<SearchOutlined/>} onClick={begin} disabled>开始检测</Button> :*/}
-            <Button icon={<AccountBookOutlined/>} style={{background: "#1890ff", color: "white"}}
+
+            <Button icon={<AccountBookOutlined/>} type={'primary'} style={{color: "white"}}
                     onClick={toBuy}>购买套餐</Button>
-            <Button icon={<AccountBookOutlined/>} style={{background: "#1890ff", color: "white", marginLeft: "20px"}}
-                    onClick={toMakeUp}>差额补足</Button>
-            <Button icon={<SearchOutlined/>} style={{marginLeft: "20px"}} onClick={begin}>开始检测</Button>
+
+            {window.localStorage.getItem('detectionId') === null ?
+                <>
+                    <Button icon={<AccountBookOutlined/>} type={'primary'} style={{marginLeft: "20px"}} disabled
+                            onClick={toMakeUp}>差额补足</Button>
+                    <Button icon={<SearchOutlined/>} style={{marginLeft: "20px"}} onClick={begin}
+                            disabled>开始检测</Button></>
+                :
+                <>
+                    <Button icon={<AccountBookOutlined/>} type={'primary'} style={{color: "white", marginLeft: "20px"}}
+                            onClick={toMakeUp}>差额补足</Button>
+                    <Button icon={<SearchOutlined/>} style={{marginLeft: "20px"}} onClick={begin}>开始检测</Button></>
+            }
             {current === 2 && display ?
                 <Button icon={<DownloadOutlined/>} style={{marginLeft: "20px"}} onClick={saveFile}>
                     下载交互详情
