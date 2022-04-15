@@ -8,6 +8,7 @@ import EqualIcon from "../../images/equalIcon.png";
 import AddIcon from "../../images/addIcon.png";
 import styled from "styled-components";
 import * as utils from "../../utils/fetch-request";
+import {detection} from "../../ducks";
 
 const action = '/api/face/encryptedVideo/' + utils.getHeaderFromLocalStorage('user')
 
@@ -22,7 +23,7 @@ function getBase64(img, callback) {
 }
 
 
-const VideoUpload = () => {
+const VideoUpload = ({setDetectionId}) => {
     const [state, setState] = useState({
         name: '',
         loading: false,
@@ -31,12 +32,6 @@ const VideoUpload = () => {
     })
 
     const handleCustomRequest = info => {
-        // if (info.file.status === 'uploading') {
-        //     setState({
-        //         loading: true
-        //     });
-        //     return;
-        // }
         if (info.file.status === 'done') {
             setState({
                 videoPosition: info.file.response.originalImagePosition,
@@ -47,6 +42,8 @@ const VideoUpload = () => {
             info.file.size = info.file.size / 1024 / 1024;
             info.file.size = info.file.size.toFixed(2);
             window.localStorage.setItem("videoSize", info.file.size)
+            console.log(info.file.response.detectionId)
+            setDetectionId(info.file.response.detectionId)
         }
     }
     const text = (<span>我们会将您上传的视频进行加性秘密分解</span>);

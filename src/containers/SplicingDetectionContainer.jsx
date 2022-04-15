@@ -12,14 +12,17 @@ const SplicingDetectionContainer = ({
                                         status,
                                         originalPath,
                                         flag,
-                                        setClear
+                                        setClear,
+                                        setDetectionId,
+                                        detectionId
                                     }) => {
     useEffect(() => {
         setClear()
     }, [])
     return (<SplicingIndex beginDetection={beginDetection} getDetectionDetail={getDetectionDetail} result={result}
                            textAreaValue={textAreaValue} current={current} status={status} originalPath={originalPath}
-                           flag={flag}/>)
+                           flag={flag}
+                           setDetectionId={setDetectionId} detectionId={detectionId}/>)
 
 }
 
@@ -29,14 +32,16 @@ const mapStateToProps = ({detection}) => ({
     current: detection.current,
     status: detection.status,
     originalPath: detection.originalPath,
-    flag: detection.flag
+    flag: detection.flag,
+    detectionId: detection.detectionId
 });
 
 
 const mapDispatchToProps = dispatch => ({
     beginDetection: (data, type) => dispatch(detectionActions.beginDetection(data, type)),
     getDetectionDetail: (data, type) => dispatch(detectionActions.getDetectionDetail(data, type)),
-    setClear: () => dispatch(detectionActions.setClear())
+    setClear: () => dispatch(detectionActions.setClear()),
+    setDetectionId: (data) => dispatch(detectionActions.setDetectionId(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SplicingDetectionContainer);

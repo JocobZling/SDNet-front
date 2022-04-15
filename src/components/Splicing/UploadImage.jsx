@@ -23,7 +23,7 @@ const Tip = styled('img')`
      width:70px;
 `
 
-const UploadImage = () => {
+const UploadImage = ({setDetectionId}) => {
     const [state, setState] = useState({
         imageUrl: '',
         pictureOnePosition: '',
@@ -41,6 +41,7 @@ const UploadImage = () => {
             info.file.size = info.file.size / 1024 / 1024;
             info.file.size = info.file.size.toFixed(2);
             window.localStorage.setItem("pictureSize", info.file.size)
+            setDetectionId(info.file.response.detectionId)
         }
     }
     const handleBeforeUpload = info => {

@@ -33,15 +33,20 @@ const WaterLogo = styled('div')`
     } 
 `
 
-const Detection = ({beginDetection, getDetectionDetail, result, textAreaValue, current, originalPath, flag, type}) => {
+const Detection = ({
+                       beginDetection,
+                       getDetectionDetail,
+                       result,
+                       textAreaValue,
+                       current,
+                       originalPath,
+                       flag,
+                       type,
+                       detectionId
+                   }) => {
     const [state, setState] = useState({
         display: true
     })
-    // if (detectionId === 0) {
-    //     textAreaValue = []
-    //     result = []
-    //     current = 0
-    // }
 
     const begin = async () => {
         const userId = window.localStorage.getItem('user');
@@ -71,7 +76,6 @@ const Detection = ({beginDetection, getDetectionDetail, result, textAreaValue, c
         }
 
     }
-
     const saveFile = () => {
         let str = new Blob([textAreaValue], {type: 'text/plain;charset=utf-8'})
         saveAs(str, '交互详情.txt')
@@ -106,14 +110,12 @@ const Detection = ({beginDetection, getDetectionDetail, result, textAreaValue, c
     }
 
     const {display} = state
-
     return (
         <div>
-
             <Button icon={<AccountBookOutlined/>} type={'primary'} style={{color: "white"}}
                     onClick={toBuy}>购买套餐</Button>
 
-            {window.localStorage.getItem('detectionId') === null ?
+            {detectionId === 0 || detectionId === undefined ?
                 <>
                     <Button icon={<AccountBookOutlined/>} type={'primary'} style={{marginLeft: "20px"}} disabled
                             onClick={toMakeUp}>差额补足</Button>

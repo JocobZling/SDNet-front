@@ -8,7 +8,8 @@ export const types = {
     BEGIN_DETECTION: 'detection/BEGIN_DETECTION',
     GET_TEXTAREA_VALUE: 'detection/GET_TEXTAREA_VALUE',
     SET_DETECTION_RESULT: 'detection/SET_DETECTION_RESULT',
-    CLEAR_STATE: 'detection/CLEAR_STATE'
+    CLEAR_STATE: 'detection/CLEAR_STATE',
+    SET_DETECTION_ID: 'detection/SET_DETECTION_ID'
 };
 
 export const actions = {
@@ -82,7 +83,14 @@ export const actions = {
             current: 0,
             originalPath: "",
             flag: "",
-            type: types.CLEAR_STATE
+            detectionId: 0,
+            type: types.CLEAR_STATE,
+        }
+    },
+    setDetectionId: (detectionId) => {
+        return {
+            detectionId: detectionId,
+            type: types.SET_DETECTION_ID
         }
     }
 }
@@ -93,7 +101,8 @@ const initialState = {
     current: 0,
     status: ["process", "wait", "wait"],
     originalPath: "",
-    flag: ""
+    flag: "",
+    detectionId: 0
 };
 
 // reducer
@@ -116,7 +125,13 @@ export default function reducer(state = initialState, action) {
                 textAreaValue: action.textAreaValue,
                 originalPath: action.originalPath,
                 flag: action.flag,
-                current: action.current
+                current: action.current,
+                detectionId: action.detectionId
+            }
+        case types.SET_DETECTION_ID:
+            return {
+                ...state,
+                detectionId: action.detectionId
             }
         default:
             return state

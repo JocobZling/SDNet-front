@@ -4,9 +4,20 @@ import {Divider} from "antd";
 import Detection from "./Detection";
 
 
-const SplicingIndex = ({beginDetection, getDetectionDetail, result, textAreaValue, current, status, originalPath, flag}) => (
+const SplicingIndex = ({
+                           beginDetection,
+                           getDetectionDetail,
+                           result,
+                           textAreaValue,
+                           current,
+                           status,
+                           originalPath,
+                           flag,
+                           setDetectionId,
+                           detectionId
+                       }) => (
     <div>
-        <UploadImage/>
+        <UploadImage setDetectionId={setDetectionId}/>
         <Divider orientation="left" style={{fontWeight: 700}}>支持隐私保护的肖像图片检测</Divider>
         <Detection beginDetection={beginDetection}
                    getDetectionDetail={getDetectionDetail} result={result} textAreaValue={textAreaValue}
@@ -14,6 +25,7 @@ const SplicingIndex = ({beginDetection, getDetectionDetail, result, textAreaValu
                    originalPath={originalPath}
                    flag={flag}
                    type={"image"}
+                   detectionId={detectionId}
         />
     </div>
 )
