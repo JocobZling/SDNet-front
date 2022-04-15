@@ -6,7 +6,7 @@ const AnalysisImage = ({histOriginal, histOne, histTwo}) => {
 
     return(
         <div>
-            <Row justify="space-around" align="right" gutter={[24, 24]}>
+            <Row justify="space-between" align="middle" gutter={[24, 24]}>
                 <Col>
                     <Image
                         width={350}
