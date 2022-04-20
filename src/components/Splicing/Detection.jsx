@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Row, Steps, Col, Switch, Image, Input, Statistic, message} from 'antd';
+import {Button, Row, Steps, Col, Switch, Image, Input, Statistic, message, Badge, Avatar} from 'antd';
 import {saveAs} from 'file-saver'
 import ReactWatermark from 'react-watermark-module'
 import {
@@ -7,12 +7,12 @@ import {
     DownloadOutlined, AccountBookOutlined,
 } from '@ant-design/icons';
 import EdgeServer1 from '../../images/PPResNetTop.svg';
-import EdgeServer2 from '../../images/PPResNetBottom.svg'
+import EdgeServer2 from '../../images/PPResNetBottom.svg';
 import Reaction1 from '../../images/Reaction1.svg';
 import Reaction2 from '../../images/Reaction2.svg';
-import True from '../../images/true1.png'
-import False from '../../images/false1.png'
-import Line from '../../images/line.svg'
+import True from '../../images/true1.png';
+import False from '../../images/false1.png';
+import Line from '../../images/line.svg';
 import styled from "styled-components";
 import * as request from "../../utils/fetch-request";
 
@@ -32,7 +32,24 @@ const WaterLogo = styled('div')`
         }
     } 
 `
-
+// const WaterMark = styled('div')`
+//     img{
+//         overflow:hidden;
+//         width:100%;
+//     }
+//     position:relative;
+//     width:100px;
+//     height:auto;
+//     :after{
+//         float:left;
+//         overflow:hidden;
+//         position:absolute;
+//         content:url(${require('../../images/true1.png')});
+//         z-index:999;
+//         height:60px;
+//         width:60px;
+//     }
+// `
 const Detection = ({
                        beginDetection,
                        getDetectionDetail,
@@ -53,13 +70,10 @@ const Detection = ({
         // 当前用户所剩余的流量
         let res = await request.get("/html/getUserLeftDataJson?userid=" + userId);
         let leftdata = res.body.leftdata;
-        console.log(leftdata);
         // 当前检测需要的余量
         let needdata = window.localStorage.getItem('pictureSize');
-        console.log(needdata);
         if (needdata <= leftdata) {
             res = await request.get("/html/costLeftDataJson?userid=" + userId + "&needdata=" + needdata);
-
             if (res.body.costresult === "costsuccess") {
                 leftdata -= needdata;
                 leftdata = leftdata.toFixed(2);
@@ -74,7 +88,6 @@ const Detection = ({
         } else {
             message.warning("余量不足，请充值！");
         }
-
     }
     const saveFile = () => {
         let str = new Blob([textAreaValue], {type: 'text/plain;charset=utf-8'})
@@ -108,7 +121,7 @@ const Detection = ({
         size = size - leftdata + 0.02;
         window.open("http://22d858i464.51mypc.cn/html/calAlipayForSDNet?userid=" + userid + "&needdata=" + size);
     }
-
+    console.log(flag)
     const {display} = state
     return (
         <div>
@@ -217,22 +230,43 @@ const Detection = ({
                                     <WaterLogo>
                                         {flag !== "" ? (
                                             flag === true ?
-                                                <ReactWatermark
-                                                    ID={'watermark'} //非必须，字符串，id
-                                                    imagePath={"data:image/jpg;base64," + originalPath} //必须，对象，背景图片
-                                                    logoPath={True} //必须，logo水印的路径，用require或import导入
-                                                    textPosition={'center'} //水印位置，默认右下角，支持字符串：leftTop、leftBottom、rightTop、rightBottom、center，也支持自定义位置，用数组表示 [x, y]
-                                                    transparent={1} //非必须，logo透明度
-                                                    type={'logo'} //必须，水印类型
-                                                /> :
-                                                <ReactWatermark
-                                                    ID={'watermark'} //非必须，字符串，id
-                                                    imagePath={"data:image/jpg;base64," + originalPath} //必须，对象，背景图片
-                                                    logoPath={False} //必须，logo水印的路径，用require或import导入
-                                                    textPosition={'center'} //水印位置，默认右下角，支持字符串：leftTop、leftBottom、rightTop、rightBottom、center，也支持自定义位置，用数组表示 [x, y]
-                                                    transparent={1} //非必须，logo透明度
-                                                    type={'logo'} //必须，水印类型
-                                                />) : ""}
+                                                // <ReactWatermark
+                                                //     ID={'watermark'} //非必须，字符串，id
+                                                //     imagePath={"data:image/jpg;base64," + originalPath} //必须，对象，背景图片
+                                                //     logoPath={True} //必须，logo水印的路径，用require或import导入
+                                                //     textPosition={'center'} //水印位置，默认右下角，支持字符串：leftTop、leftBottom、rightTop、rightBottom、center，也支持自定义位置，用数组表示 [x, y]
+                                                //     transparent={1} //非必须，logo透明度
+                                                //     type={'logo'} //必须，水印类型
+                                                // />
+                                                // <WaterMark>
+                                                //     <img src={"data:image/jpg;base64," + originalPath}/>
+                                                // </WaterMark> :
+                                                <Badge count={<img src={True} style={{
+                                                    zIndex: 999,
+                                                    width: '50px',
+                                                    height: '50px'
+                                                }}/>}
+                                                       offset={[-20, 20]}>
+                                                    <Avatar shape="square" size="large"
+                                                            src={"data:image/jpg;base64," + originalPath}/>
+                                                </Badge> :
+                                                // <ReactWatermark
+                                                //     ID={'watermark'} //非必须，字符串，id
+                                                //     imagePath={"data:image/jpg;base64," + originalPath} //必须，对象，背景图片
+                                                //     logoPath={False} //必须，logo水印的路径，用require或import导入
+                                                //     textPosition={'center'} //水印位置，默认右下角，支持字符串：leftTop、leftBottom、rightTop、rightBottom、center，也支持自定义位置，用数组表示 [x, y]
+                                                //     transparent={1} //非必须，logo透明度
+                                                //     type={'logo'} //必须，水印类型
+                                                // />
+                                                <Badge count={<img src={True} style={{
+                                                    zIndex: 999,
+                                                    width: '50px',
+                                                    height: '50px'
+                                                }}/>} offset={[-20, 20]}>
+                                                    <Avatar shape="square"
+                                                            size={{xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100}}
+                                                            src={"data:image/jpg;base64," + originalPath}/>
+                                                </Badge>) : ""}
                                     </WaterLogo> : ""}
                             </Col>}
                     </Row>

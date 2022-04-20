@@ -40,7 +40,7 @@ export const actions = {
                     dispatch(appActions.finishFetch());
                     window.localStorage.removeItem('detectionId')
                 }
-            }, 120);
+            }, 300);
         }
     },
     setFaceDetail: (textAreaValue, flag, originalPath) => {
@@ -49,7 +49,6 @@ export const actions = {
         if (textAreaValue.length > 30 && flag === "go no") {
             current = 1
             status = ["finish", "process", "wait"]
-
         } else if (flag === "STOP") {
             current = 2
             status = ["finish", "finish", "finish"]
@@ -68,12 +67,10 @@ export const actions = {
         let r11 = result[0].split(",")[1].split("]")[0]
         let r2 = result[1].split(",")[0].split("[")[1]
         let r22 = result[1].split(",")[1].split("]")[0]
-        let flag;
-        flag = Number(r1) + Number(r2) <= Number(r11) + Number(r22);
         return {
             type: types.SET_DETECTION_RESULT,
             result: result,
-            flag: flag
+            flag: Number(r1) + Number(r2) <= Number(r11) + Number(r22)
         }
     },
     setClear: () => {
