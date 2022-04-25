@@ -10,7 +10,6 @@ const SplicingIndex = ({
                            result,
                            textAreaValue,
                            current,
-                           status,
                            originalPath,
                            flag,
                            setDetectionId,

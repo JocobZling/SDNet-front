@@ -9,7 +9,6 @@ const SplicingDetectionContainer = ({
                                         result,
                                         textAreaValue,
                                         current,
-                                        status,
                                         originalPath,
                                         flag,
                                         setClear,
@@ -20,7 +19,7 @@ const SplicingDetectionContainer = ({
         setClear()
     }, [])
     return (<SplicingIndex beginDetection={beginDetection} getDetectionDetail={getDetectionDetail} result={result}
-                           textAreaValue={textAreaValue} current={current} status={status} originalPath={originalPath}
+                           textAreaValue={textAreaValue} current={current} originalPath={originalPath}
                            flag={flag}
                            setDetectionId={setDetectionId} detectionId={detectionId}/>)
 
@@ -30,7 +29,6 @@ const mapStateToProps = ({detection}) => ({
     result: detection.result,
     textAreaValue: detection.textAreaValue,
     current: detection.current,
-    status: detection.status,
     originalPath: detection.originalPath,
     flag: detection.flag,
     detectionId: detection.detectionId

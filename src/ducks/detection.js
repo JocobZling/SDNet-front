@@ -45,20 +45,17 @@ export const actions = {
     },
     setFaceDetail: (textAreaValue, flag, originalPath) => {
         let current = 0;
-        let status = ["process", "wait", "wait"]
-        if (textAreaValue.length > 30 && flag === "go no") {
+        if (textAreaValue.length > 2 && flag === "go on") {
             current = 1
-            status = ["finish", "process", "wait"]
-        } else if (flag === "STOP") {
+        }
+        if (flag === "STOP") {
             current = 2
-            status = ["finish", "finish", "finish"]
         }
         return {
             type: types.GET_TEXTAREA_VALUE,
             textAreaValue: textAreaValue,
             originalPath: originalPath,
             current: current,
-            status: status
         }
     },
     setResult: (result, data) => {
@@ -96,7 +93,6 @@ const initialState = {
     textAreaValue: [],
     result: [],
     current: 0,
-    status: ["process", "wait", "wait"],
     originalPath: "",
     flag: "",
     detectionId: 0
