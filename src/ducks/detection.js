@@ -26,21 +26,20 @@ export const actions = {
     },
     getDetectionDetail: (data, type) => {
         return dispatch => {
+            let time = type === "video" ? 1200 : 500;
             window.timer = setInterval(async () => {
                 dispatch(appActions.startFetch());
                 const res = await request.get(`./api/face/detectionDetail/${data}/${type}`);
                 if (res.status === HTTP_CODE.OK && res.body.flag === "go on" && res.body.textAreaValue.length) {
                     dispatch(actions.setFaceDetail(res.body.textAreaValue, res.body.flag))
-                    dispatch(appActions.finishFetch());
-                }
-                if (res.status === HTTP_CODE.OK && res.body.flag === "STOP") {
+                }else if (res.status === HTTP_CODE.OK && res.body.flag === "STOP") {
                     clearInterval(window.timer);
                     dispatch(actions.setFaceDetail(res.body.textAreaValue, res.body.flag, res.body.originalBase64))
                     dispatch(actions.setResult(res.body.result, data))
                     dispatch(appActions.finishFetch());
                     window.localStorage.removeItem('detectionId')
                 }
-            }, 300);
+            }, time);
         }
     },
     setFaceDetail: (textAreaValue, flag, originalPath) => {

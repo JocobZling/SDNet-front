@@ -1,4 +1,4 @@
-import {Upload, Button, Image, Col, Row, Tooltip, Divider} from 'antd';
+import {Upload, Button, Image, Col, Row, Tooltip, Divider, message} from 'antd';
 import {UploadOutlined, PlusOutlined} from '@ant-design/icons';
 import React, {useState} from "react";
 import Tips from '../../images/tips.png'
@@ -23,7 +23,7 @@ const Tip = styled('img')`
      width:70px;
 `
 
-const UploadImage = ({setDetectionId}) => {
+const UploadImage = ({setDetectionId, setClear}) => {
     const [state, setState] = useState({
         imageUrl: '',
         pictureOnePosition: '',
@@ -41,16 +41,27 @@ const UploadImage = ({setDetectionId}) => {
             info.file.size = info.file.size / 1024 / 1024;
             info.file.size = info.file.size.toFixed(2);
             window.localStorage.setItem("pictureSize", info.file.size)
+            setClear()
             setDetectionId(info.file.response.detectionId)
         }
     }
     const handleBeforeUpload = info => {
-        getBase64(info, imageUrl => {
-            setState({
-                imageUrl: imageUrl,
+        const isJpgOrPng = info.type === 'image/jpeg' || info.type === 'image/png';
+        if (!isJpgOrPng) {
+            message.error('请上传JPG或PNG格式的图片');
+        }
+        const isLt2M = info.size / 1024 / 1024 < 2;
+        if (!isLt2M) {
+            message.error('上传图片大小请小于2MB!');
+        }
+        if (isJpgOrPng && isLt2M) {
+            getBase64(info, imageUrl => {
+                setState({
+                    imageUrl: imageUrl,
+                })
             })
-        })
-        return true;
+        }
+        return isJpgOrPng && isLt2M;
     }
 
     const {imageUrl, pictureOnePosition, pictureTwoPosition, detectionId, pictureSize} = state;

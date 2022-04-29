@@ -21,7 +21,7 @@ const SplicingDetectionContainer = ({
     return (<SplicingIndex beginDetection={beginDetection} getDetectionDetail={getDetectionDetail} result={result}
                            textAreaValue={textAreaValue} current={current} originalPath={originalPath}
                            flag={flag}
-                           setDetectionId={setDetectionId} detectionId={detectionId}/>)
+                           setDetectionId={setDetectionId} detectionId={detectionId} setClear={setClear}/>)
 
 }
 
