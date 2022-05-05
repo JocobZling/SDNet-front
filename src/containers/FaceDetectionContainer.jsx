@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
-import SplicingIndex from "../components/Splicing/SplicingIndex";
+import FaceIndex from "../components/Splicing/FaceIndex";
 import {actions as detectionActions} from "../ducks/detection";
 import {connect} from "react-redux";
 
-const SplicingDetectionContainer = ({
+const FaceDetectionContainer = ({
                                         beginDetection,
                                         getDetectionDetail,
                                         result,
@@ -18,7 +18,7 @@ const SplicingDetectionContainer = ({
     useEffect(() => {
         setClear()
     }, [])
-    return (<SplicingIndex beginDetection={beginDetection} getDetectionDetail={getDetectionDetail} result={result}
+    return (<FaceIndex beginDetection={beginDetection} getDetectionDetail={getDetectionDetail} result={result}
                        textAreaValue={textAreaValue} current={current} originalPath={originalPath}
                        flag={flag}
                        setDetectionId={setDetectionId} detectionId={detectionId}/>)
@@ -42,4 +42,4 @@ const mapDispatchToProps = dispatch => ({
     setDetectionId: (data) => dispatch(detectionActions.setDetectionId(data))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SplicingDetectionContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(FaceDetectionContainer);

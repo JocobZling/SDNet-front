@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {actions as detectionActions} from "../ducks/detection";
 import {connect} from "react-redux";
 import VideoDetectionIndex from "../components/Splicing/VideoDetectionIndex";
-import SplicingIndex from "../components/Splicing/SplicingIndex";
+import FaceIndex from "../components/Splicing/FaceIndex";
 
 const VideoDetectionContainer = ({
                                      beginDetection,

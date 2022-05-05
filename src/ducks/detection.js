@@ -30,17 +30,38 @@ export const actions = {
                 dispatch(appActions.startFetch());
                 const res = await request.get(`./api/face/detectionDetail/${data}/${type}`);
                 if (res.status === HTTP_CODE.OK && res.body.flag === "go on" && res.body.textAreaValue.length) {
-                    dispatch(actions.setFaceDetail(res.body.textAreaValue, res.body.flag))
+                    dispatch(actions.setSplicingDetail(res.body.textAreaValue, res.body.flag))
                     dispatch(appActions.finishFetch());
                 }
                 if (res.status === HTTP_CODE.OK && res.body.flag === "STOP") {
                     clearInterval(window.timer);
-                    dispatch(actions.setFaceDetail(res.body.textAreaValue, res.body.flag, res.body.originalBase64))
+                    dispatch(actions.setSplicingDetail(res.body.textAreaValue, res.body.flag, res.body.originalBase64))
                     dispatch(actions.setResult(res.body.result, data))
                     dispatch(appActions.finishFetch());
                     window.localStorage.removeItem('detectionId')
                 }
-            }, 300);
+            }, 600);
+        }
+    },
+    setSplicingDetail: (textAreaValue, flag, originalPath) => {
+        let current = 0;
+        if (textAreaValue.length > 2) {
+            current = 1
+        }
+        if (textAreaValue.length > 40) {
+            current = 2
+        }
+        if (textAreaValue.length > 50) {
+            current = 3
+        }
+        if (flag === "STOP") {
+            current = 4
+        }
+        return {
+            type: types.GET_TEXTAREA_VALUE,
+            textAreaValue: textAreaValue,
+            originalPath: originalPath,
+            current: current,
         }
     },
     setFaceDetail: (textAreaValue, flag, originalPath) => {

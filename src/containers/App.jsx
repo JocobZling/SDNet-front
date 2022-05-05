@@ -5,10 +5,11 @@ import WelcomeContainer from './WelcomeContainer'
 import UserPasswordContainer from "./UserPassword";
 import UserProfileContainer from "./UserProfile";
 import MyLoginContainer from "./MyLoginContainer";
-import SplicingDetectionContainer from "./SplicingDetectionContainer";
+import FaceDetectionContainer from "./FaceDetectionContainer";
 import EncryptedImagAnalysisContainer from "./EncryptedImagAnalysisContainer";
 import FaceHistoryContainer from "./FaceHistoryContainer";
 import VideoDetectionContainer from "./VideoDetectionContainer";
+import SplicingDetectionContainer from './SplicingDetectionContainer'
 
 
 const HomeContainer = () => {
@@ -24,6 +25,7 @@ const HomeContainer = () => {
                 <Route path='/profile' exact component={UserProfileContainer}/>
                 <Route path='/password' exact component={UserPasswordContainer}/>
                 <Route path='/login' exact component={MyLoginContainer}/>
+                <Route path='/faceDetection' exact component={FaceDetectionContainer}/>
                 <Route path='/splicingDetection' exact component={SplicingDetectionContainer}/>
                 <Route path='/videoDetection' exact component={VideoDetectionContainer}/>
                 <Route path='/encryptedImagAnalysis' exact component={EncryptedImagAnalysisContainer}/>

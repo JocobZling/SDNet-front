@@ -87,7 +87,7 @@ const FaceHistory = ({getFaceHistory, faceHistory}) => {
 
     return (
         <Typography>
-            <Title>肖像取证历史记录</Title>
+            <Title>图像取证历史记录</Title>
             <Table columns={columns}
                    dataSource={faceHistory.content}
                    pagination={{
