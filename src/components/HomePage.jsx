@@ -57,7 +57,7 @@ const HomePage = () => (
                         </Panel>
                     </Collapse>
                     <Collapse defaultActiveKey="1">
-                        <Panel header="支持隐私保护的肖像取证" key="5">
+                        <Panel header="支持隐私保护的人脸图片检测" key="5">
                             <p>&nbsp;&nbsp;{facejc}</p>
                         </Panel>
                     </Collapse>

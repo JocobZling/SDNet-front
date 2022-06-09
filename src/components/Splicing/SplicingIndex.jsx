@@ -18,7 +18,7 @@ const SplicingIndex = ({
                        }) => (
     <div>
         <UploadImage setDetectionId={setDetectionId} setClear={setClear}/>
-        <Divider orientation="left" style={{fontWeight: 700}}>支持隐私保护的肖像图片检测</Divider>
+        <Divider orientation="left" style={{fontWeight: 700}}>支持隐私保护的图片检测</Divider>
         <Detection beginDetection={beginDetection}
                    getDetectionDetail={getDetectionDetail} result={result} textAreaValue={textAreaValue}
                    current={current}

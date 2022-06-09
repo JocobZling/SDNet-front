@@ -49,7 +49,7 @@ class FaceLayout extends React.Component {
                        }}>
                     <Logo>
                         <img src={img} alt={'logo'} className="logo"/>
-                        <div style={{textAlign:'center'}}>支持隐私保护的肖像取证系统</div>
+                        <div style={{textAlign:'center', fontSize:'24px'}}>支持隐私保护的深度伪造人脸检测系统</div>
                     </Logo>
                     <LeftMenu/>
                 </Sider>
